@@ -56,6 +56,8 @@ https://github.com/geneontology/noctua-models
 Any existing set of GO associations can be converted, albeit in a 'degenerate' disconnected form. This can still be useful for the purposes of uniform tooling and programmatic access:
 
     owltools go.owl --gaf my.gaf --gaf-lego-indivduals -o my-lego.owl
+    
+See this ticket for more details: https://github.com/owlcollab/owltools/issues/117
 
 ## Down in the weeds background details
 
