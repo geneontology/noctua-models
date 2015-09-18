@@ -7,6 +7,9 @@ The models are stored as OWL in the [models/](models/) directory.
 
 ## OWL Modeling
 
+See also the documentation here:
+https://github.com/geneontology/minerva/blob/master/specs/owl-model.md
+
 The native form of a Noctua model is OWL. A Noctua model consists of *ABox* axioms (ie axioms about individuals) - this is in contrast to a traditional ontology which is *TBox* axioms (ie class axioms). We use the term 'LEGO model' when we are talking about an ABox with members that instantiate GO molecular function classes (ie an activity flow diagram). More generally 'Noctua model' for when we have minimal assumptions about ontologies used.
 
 ## General modeling paradigm (informal)
