@@ -27,4 +27,4 @@ target/m.ttl: target/m.owl-ttl
 	riot $< > $@
 
 $(MIRROR):
-	owltools $(OBO)/go/extensions/go-lego.owl --sic -d . -c catalog-v001.xml
+	owltools $(OBO)/go/extensions/go-lego.owl --sic -d . -c $@
