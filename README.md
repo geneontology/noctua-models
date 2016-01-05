@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/geneontology/noctua-models.svg?branch=master)](https://travis-ci.org/geneontology/noctua-models)
+[![DOI](https://zenodo.org/badge/13996/geneontology/noctua-models.svg)](https://zenodo.org/badge/latestdoi/13996/geneontology/noctua-models)
+
 # noctua-models
 
 This is the data repository for the models created and edited with the Noctua tool stack for GO. See https://github.com/geneontology/noctua
