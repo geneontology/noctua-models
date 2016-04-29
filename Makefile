@@ -8,7 +8,8 @@ MIRROR = mirror-catalog.xml
 
 all: noctua-models.owl noctua-models-merged.owl
 test: all
-clean: rm -rf $(MIRROR)
+clean:
+	rm -rf $(MIRROR)
 
 noctua-models.owl: $(MIRROR)
 	owltools --catalog-xml $(MIRROR) models/[0-9]* --merge-support-ontologies --set-ontology-id http://model.geneontology.org/noctua-models.owl -o -f ttl $@
