@@ -14,7 +14,7 @@ MIRROR = mirror-catalog.xml
 # catalog that rewires go-lego to extracted minimal module
 MODCAT = module-catalog.xml
 
-all: noctua-models.owl noctua-models-merged.owl
+all: noctua-models.owl noctua-models-merged.owl noctua-models-noimport.owl
 test: all
 clean:
 	rm -rf $(MIRROR)
