@@ -6,11 +6,15 @@ CAT=catalog-v001.xml
 FAKECAT=fake-catalog.xml
 MIRROR = mirror-catalog.xml
 
-all: noctua-models.owl
+all: noctua-models.owl noctua-models-merged.owl
 test: all
+clean: rm -rf $(MIRROR)
 
 noctua-models.owl: $(MIRROR)
 	owltools --catalog-xml $(MIRROR) models/[0-9]* --merge-support-ontologies --set-ontology-id http://model.geneontology.org/noctua-models.owl -o -f ttl $@
+
+noctua-models-merged.owl: noctua-models.owl
+	owltools --catalog-xml $(CAT) $< --merge-imports-closure -o $@
 
 noctua-models-labeled.owl: target/go-lego-module.owl
 	owltools --catalog-xml catalog-v001.xml $< --label-abox -o -f ttl $@

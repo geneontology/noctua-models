@@ -5,10 +5,13 @@ has historically been limited in how well it can express important
 details of the cellular biology being described.
 
 This has lead to a number of incremental improvements, while retaining
-compatibility. Our file formats [are documented here](http://geneontology.org/page/go-annotation-file-formats), we
-also provide a brief summary here.
+compatibility, ultimately leading to the new expressive LEGO
+format.
 
 ## Basic Annotation Formats: GAF and GPAD
+
+Our current production file formats [are documented here](http://geneontology.org/page/go-annotation-file-formats), we
+also provide a brief summary here.
 
 The original format was GAF (retrospectively called GAF-1), a 15
 column format for association genes or other entities with GO terms.
@@ -29,7 +32,7 @@ We later introduced two new formats, GPAD and GPI. We decided to
 create two formats to address two separate concerns:
 
  * Representing *associations* [GPAD](http://geneontology.org/page/gene-product-association-data-gpad-format)
- * Representing *gene product information* (GPI)[http://geneontology.org/page/gene-product-information-gpi-format]
+ * Representing *gene product information* [GPI](http://geneontology.org/page/gene-product-information-gpi-format)
 
 Formally, these formats are more *normalized* than GAF. In a GAF, we
 repeat the same information about a gene or product if these are
@@ -72,7 +75,7 @@ function of genes.
 
 The relationship to other formats can be seen in this subsumption diagram:
 
-![GAF-GPAD-figure](https://raw.githubusercontent.com/geneontology/noctua-models/master/doc/gaf-gpad-lego.png)
+![GAF-GPAD-LEGO-figure](https://raw.githubusercontent.com/geneontology/noctua-models/master/doc/gaf-gpad-lego.png)
 
 Anything that can be represented in any of the older GO association
 formats can be represented in LEGO. However, the converse is not
