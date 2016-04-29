@@ -15,7 +15,7 @@ clean:
 noctua-models.owl: $(MIRROR)
 	owltools --catalog-xml $(MIRROR) models/[0-9]* --merge-support-ontologies --set-ontology-id http://model.geneontology.org/noctua-models.owl -o -f ttl $@
 
-noctua-models-merged.owl: noctua-models.owl
+noctua-models-merged.owl: noctua-models.owl target/go-lego-module.owl
 	owltools --catalog-xml $(MODCAT) $< --merge-imports-closure -o $@
 
 noctua-models-labeled.owl: target/go-lego-module.owl
