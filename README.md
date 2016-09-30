@@ -72,4 +72,3 @@ Any existing set of GO associations can be converted, albeit in a 'degenerate' d
     owltools go.owl --gaf my.gaf --gaf-lego-indivduals -o my-lego.owl
     
 See this ticket for more details: https://github.com/owlcollab/owltools/issues/117
-
