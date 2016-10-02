@@ -23,7 +23,7 @@ clean:
 # instead we therefore perform a bare-bones OWL syntax check using the OWLAPI on each model.
 # we use the fake-catalog which rewires go-lego.owl to an empty file. 
 travis-test:
-	owltools --use-catalog fake-catalog.xml models/*
+	owltools --catalog-xml fake-catalog.xml models/*
 
 # ----------------------------------------
 # COMBINED MODELS
