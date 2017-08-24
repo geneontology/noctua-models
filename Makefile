@@ -6,6 +6,7 @@ GOX=$(GO)/extensions
 CAT=catalog-v001.xml
 
 # fake catalog that rewires go-lego to null
+# NOTE: problematic for OWLAPI, lack of declarations
 FAKECAT=fake-catalog.xml
 
 # catalog that rewires go-lego to local cache
@@ -23,32 +24,43 @@ clean:
 # instead we therefore perform a bare-bones OWL syntax check using the OWLAPI on each model.
 # we use the fake-catalog which rewires go-lego.owl to an empty file. 
 travis-test:
-	owltools --catalog-xml fake-catalog.xml models/*
+	owltools --catalog-xml fake-catalog.xml models/*.ttl
 
 # ----------------------------------------
 # COMBINED MODELS
 # ----------------------------------------
 
-# combined models, preserve full imports
-# reasoning: complete
+TTL = -o -f ttl $(subst .owl,.ttl,$@.ttl)
+
+# - combined models
+# - imports preserved
 noctua-models.owl: $(MIRROR)
-	owltools --catalog-xml $(MIRROR) models/[0-9]* --merge-support-ontologies --set-ontology-id http://model.geneontology.org/noctua-models.owl -o -f ttl $@
+	owltools --catalog-xml $(MIRROR) models/*.ttl --merge-support-ontologies --label-abox --set-ontology-id http://model.geneontology.org/noctua-models.owl -o $@ $(TTL)
 
-# combined models, import module merged
-# reasoning: complete
+# - combined models
+# - imports -> module -> merged
 noctua-models-merged.owl: noctua-models.owl target/go-lego-module.owl
-	owltools --catalog-xml $(MODCAT) $< --merge-imports-closure -o $@
+	owltools --catalog-xml $(MODCAT) $< --merge-imports-closure -o $@ $(TTL)
 
-# combined models, no imports, no merged modules
-# reasoning: incomplete
+# - combined models
+# - imports: REMOVED
 noctua-models-noimport.owl: noctua-models.owl
-	owltools --catalog-xml $(FAKECAT) $< --remove-imports-declarations -o $@
+	owltools --catalog-xml $(FAKECAT) $< --remove-imports-declarations -o $@ $(TTL)
 
 # test: add labels to all abox members
 noctua-models-labeled.owl: target/go-lego-module.owl
 	owltools --catalog-xml catalog-v001.xml $< --label-abox -o -f ttl $@
 
+noctua-importer.owl:
+	./util/make-import.pl models > $@ && catalog-yaml-to-xml.py multimodel-catalog.yaml module-catalog.yaml > multimodel-catalog.xml
+
+
+# Add abox labels
+%-labeled.owl: %.owl
+	owltools use-catalog $< --label-abox -o -f ttl $@
+
 # combined models, converted to obographs
+# note: why merge first?
 noctua-models.json: noctua-models.owl
 	minerva-cli.sh --catalog-xml $(FAKECAT) --owl-lego-to-json  -i $< --pretty-json -o $@ 
 
@@ -79,18 +91,20 @@ $(MIRROR):
 # ----------------------------------------
 
 # direct ttl translation, no imports
-target/%.ttl: models/%
-	owltools --catalog-xml $(FAKECAT) $< --remove-imports-declarations -o -f ttl $@
+#target/%.ttl: models/%
+#	owltools --catalog-xml $(FAKECAT) $< --remove-imports-declarations -o -f ttl $@
+
+
 
 # a module for an individual model
 # (intermediate target, see next step)
-target/%-module.owl: models/% $(MIRROR)
+target/%-module.owl: models/%.ttl $(MIRROR)
 	owltools --catalog-xml $(MIRROR) $< --merge-support-ontologies --extract-module -n $(OBO)/go/noctua/$@ -c -s $(OBO)/go/extensions/go-lego.owl -o $@
 .PRECIOUS: target/%-module.owl
 
 # a model merged with its module
-target/%-plus-module.owl: models/% target/%-module.owl
-	owltools --catalog-xml $(FAKECAT) $^ --merge-support-ontologies  --remove-imports-declarations -o  $@
+target/%-plus-module.owl: models/%.ttl target/%-module.owl
+	owltools --catalog-xml $(FAKECAT) $^ --merge-support-ontologies  --remove-imports-declarations --label-abox -o  $@
 
 target/%.json: models/%
 	owltools --catalog-xml $(FAKECAT) $< --remove-imports-declarations -o -f json $@
