@@ -27,6 +27,36 @@ travis-test:
 	owltools --catalog-xml fake-catalog.xml models/*.ttl
 
 # ----------------------------------------
+# EXPORT TO GPAD
+# ----------------------------------------
+
+# TODO: replace logic in https://build.berkeleybop.org/job/export-lego-to-gpad-sparql with this
+make_gpad_dir:
+	rm -rf legacy ;\
+	mkdir -p legacy/gpad
+
+minerva:
+	git clone https://github.com/geneontology/minerva.git
+
+build_minerva: minerva
+	cd minerva && ./build-cli.sh && chmod 755 minerva-cli/bin/minerva-cli.sh && touch $@
+
+MINERVA_CLI_MEMORY=10G
+
+blazegraph.jnl:
+	MINERVA_CLI_MEMORY=$(MINERVA_CLI_MEMORY) && minerva/minerva-cli/bin/minerva-cli.sh --import-owl-models -f models -j $@.tmp && mv $@.tmp $@
+.PRECIOUS: blazegraph.jnl
+
+write-gpad: blazegraph.jnl
+	MINERVA_CLI_MEMORY=$(MINERVA_CLI_MEMORY) minerva/minerva-cli/bin/minerva-cli.sh $(GPAD_MINERVA_ARGS) --lego-to-gpad-sparql --ontology http://purl.obolibrary.org/obo/go/extensions/go-lego.owl -i blazegraph.jnl --gpad-output legacy/gpad
+
+# collates by-model gpads into per-MOD gpads (directly under legacy/)
+# see
+# https://github.com/geneontology/go-site/issues/431
+collate-gpads:
+	./util/collate-gpads.pl legacy/gpad/*gpad
+
+# ----------------------------------------
 # COMBINED MODELS
 # ----------------------------------------
 
