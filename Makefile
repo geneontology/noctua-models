@@ -118,7 +118,7 @@ $(MIRROR):
 	owltools $(OBO)/go/extensions/go-lego.owl --sic -d . -c $@
 
 debug.owl:
-	owltools --catalog-xml $(MIRROR) $(OBO)/go/extensions/go-lego.owl --run-reasoner -r elk -u -m $@.tmp && mv $@.tmp $@
+	owltools --catalog-xml $(MIRROR) $(OBO)/go/extensions/go-lego.owl --run-reasoner -r elk -u -m $@
 
 # ----------------------------------------
 # PER-MODEL FILES
