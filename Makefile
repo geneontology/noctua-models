@@ -65,7 +65,8 @@ TTL = -o -f ttl $(subst .owl,.ttl,$@.ttl)
 # - combined models
 # - imports preserved
 noctua-models.owl: $(MIRROR)
-	owltools --catalog-xml $(MIRROR) models/*.ttl --merge-support-ontologies --label-abox --set-ontology-id http://model.geneontology.org/noctua-models.owl -o $@ $(TTL)
+	owltools --catalog-xml $(MIRROR) models/*.ttl --merge-support-ontologies --set-ontology-id http://model.geneontology.org/noctua-models.owl -o $@ $(TTL)
+#	owltools --catalog-xml $(MIRROR) models/*.ttl --merge-support-ontologies --label-abox --set-ontology-id http://model.geneontology.org/noctua-models.owl -o $@ $(TTL)
 
 # - combined models
 # - imports -> module -> merged
@@ -115,6 +116,9 @@ target/go-lego-module.owl: $(MIRROR)
 # use owltools slurp-import-chain to mirror all imports
 $(MIRROR):
 	owltools $(OBO)/go/extensions/go-lego.owl --sic -d . -c $@
+
+debug.owl:
+	owltools --catalog-xml $(MIRROR) $(OBO)/go/extensions/go-lego.owl --run-reasoner -r elk -u -m $@.tmp && mv $@.tmp $@
 
 # ----------------------------------------
 # PER-MODEL FILES
