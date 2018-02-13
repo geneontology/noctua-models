@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/495333577#> .
+@prefix : <http://model.geneontology.org/481562967#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/495333577> .
+@base <http://model.geneontology.org/481562967> .
 
-<http://model.geneontology.org/495333577> rdf:type owl:Ontology .
+<http://model.geneontology.org/481562967> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -364,6 +384,10 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0005654
 <http://purl.obolibrary.org/obo/GO_0005654> rdf:type owl:Class ;
                                             rdfs:label "nucleoplasm" .
@@ -382,11 +406,25 @@
 <http://purl.obolibrary.org/obo/GO_0019083> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0019083> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18351> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18358> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18359>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0032991
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -413,7 +451,6 @@
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> rdf:type owl:NamedIndividual ,
                                                                            <http://purl.obolibrary.org/obo/GO_0016301> ,
                                                                            <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                  <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway1613> ;
                                                                   <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76052113971194> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Complex7232417876980> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Complex9191417876980> ;
@@ -422,18 +459,75 @@
                                                                   <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Complex7232417876980> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002413> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7594> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606> ;
+                                                                  <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                                  <http://geneontology.org/lego/hint/layout/y> 460 ;
                                                                   rdfs:label "Hyperphosphorylation (Ser2) of RNA Pol II CTD by P-TEFb complex" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0016301> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000066> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76052113971194> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Complex7232417876980> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7594> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction76052113971194
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76052113971194> rdf:type owl:NamedIndividual ,
                                                                                      <http://purl.obolibrary.org/obo/GO_0005654> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76052113971194> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0005654> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606> rdf:type owl:NamedIndividual ,
                                                                            <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                  <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway1613> ;
                                                                   <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76062113971194> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Complex1374417876981> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Complex9201417876981> ,
@@ -442,12 +536,35 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein4469417876981> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein4470417876981> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Complex9214417876981> ;
+                                                                  <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                                  <http://geneontology.org/lego/hint/layout/y> 460 ;
                                                                   rdfs:label "Recruitment of elongation factors to form HIV-1 elongation complex" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000066> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76062113971194> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18357>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18357>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction76062113971194
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76062113971194> rdf:type owl:NamedIndividual ,
                                                                                      <http://purl.obolibrary.org/obo/GO_0005654> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction76062113971194> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0005654> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18357>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Complex1374417876981
@@ -463,6 +580,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein441653979443> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein441753979443> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein441853979443> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 680 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "TFIIH" .
 
 
@@ -471,6 +590,8 @@
                                                                         <http://purl.obolibrary.org/obo/GO_0032991> ;
                                                                <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Protein4677-1596330542> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4678-1596330542> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 380 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                                rdfs:label "Cap Binding Complex (CBC)" .
 
 
@@ -481,6 +602,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein154531450343831> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein154541450343831> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein154551450343831> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "P-TEFb complex" .
 
 
@@ -511,6 +634,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4676-1260804959> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4677-1260804959> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4678-1260804959> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 380 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "DSIF:NELF:early elongation complex" .
 
 
@@ -519,6 +644,8 @@
                                                                         <http://purl.obolibrary.org/obo/GO_0032991> ;
                                                                <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Protein18955-2139029192> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein18956-2139029192> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 880 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "FACT complex" .
 
 
@@ -532,6 +659,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein189621959424599> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein67811959424599> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein67821959424599> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 780 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "Elongin Complex" .
 
 
@@ -564,6 +693,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4671-34040266> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4672-34040266> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4676-34040266> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                                rdfs:label "HIV-1 early elongation complex with hyperphosphorylated Pol II CTD" .
 
 
@@ -596,6 +727,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4671-34040265> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4672-34040265> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4676-34040265> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 830 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "HIV-1 early elongation complex with hyperphosphorylated Pol II CTD" .
 
 
@@ -649,19 +782,74 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein4676-230553770> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein6781-230553770> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein6782-230553770> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                                rdfs:label "HIV-1 elongation complex" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1603
 <http://www.reactome.org/biopax/63/48887#Pathway1603> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0019083> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0019083> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Matthews, L, Rice, AP, 2005-07-27 00:00:00" ,
+                                                                                                    "Edited: Matthews, L, 2005-07-26 23:29:22" ,
+                                                                                                    "Reviewed: Peterlin, BM, 2005-01-05 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Expression of the integrated HIV-1 provirus is dependent on the host cell Pol II transcription machinery, but is regulated in critical ways by HIV-1 Tat and Rev proteins. The long terminal repeats (LTR) located at either end of the proviral DNA contain regulatory sequences that recruit cellular transcription factors. The U3 region of the 5' LTR contains numerous cis-acting elements that regulate Pol II-mediated transcription initiation. The full-length transcript, which encodes nine genes, functions as an mRNA and is packaged as genomic RNA. Smaller (subgenomic) viral mRNAs are generated by alternative splicing. The activities of Tat and Rev create two phases of gene expression (see Karn 1999; Cullen 1991). The Tat protein is an RNA specific trans-activator of LTR-mediated transcription. Association of Tat with TAR, a RNA stem-loop within the RNA leader sequence, is required for efficient elongation of the HIV-1 transcript. In the early phase of viral transcription, a multiply-spliced set of mRNAs is generated, producing the transcripts of the regulatory proteins, Tat, Rev, and Nef. In the late phase, Rev regulates nuclear export of HIV-1 mRNAs, repressing expression of the early regulatory mRNAs and promoting expression of viral structural proteins. Nuclear export of the unspliced and partially spliced late HIV-1 transcripts that encode the structural proteins requires the association of Rev with a cis-acting RNA sequence in the transcripts (Rev Response Element, RRE)." ;
                                                       rdfs:label "Transcription of the HIV genome" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1603> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0019083> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18351> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18358> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18359>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1613
-<http://www.reactome.org/biopax/63/48887#Pathway1613> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1613> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway1603> ;
+                                                      <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ,
+                                                                                                   <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Matthews, L, Rice, AP, 2005-07-27 00:00:00" ,
+                                                                                                    "Edited: Matthews, L, 2005-07-26 23:29:22" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "During the formation of the HIV elongation complex in the absence of HIV Tat, eongation factors are recruited to form the HIV-1 elongation complex (Hill and Sundquist 2013) and P-TEFb complex hyperphosphorylates RNA Pol II CTD (Hermann and Rice, 2005, Zhou et al., 2000)." ;
                                                       rdfs:label "Formation of HIV elongation complex in the absence of HIV Tat" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1613> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1603> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1613> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7605> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18342> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18345>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1613> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction7606> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18357>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#PhysicalEntity1128-1260804959
@@ -1419,6 +1607,8 @@
 ###  http://www.reactome.org/biopax/63/48887#Protein4469417876981
 <http://www.reactome.org/biopax/63/48887#Protein4469417876981> rdf:type owl:NamedIndividual ,
                                                                         <http://identifiers.org/uniprot/P23193> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 730 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "TCEA1" .
 
 
@@ -1431,6 +1621,8 @@
 ###  http://www.reactome.org/biopax/63/48887#Protein4470417876981
 <http://www.reactome.org/biopax/63/48887#Protein4470417876981> rdf:type owl:NamedIndividual ,
                                                                         <http://identifiers.org/uniprot/P55199> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "ELL" .
 
 
@@ -1560,13 +1752,67 @@
                                                                 rdfs:label "EloC" .
 
 
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18342
+<http://www.reactome.org/biopax/63/48887#PublicationXref18342> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:7853496" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18345
+<http://www.reactome.org/biopax/63/48887#PublicationXref18345> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10866664" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18351
+<http://www.reactome.org/biopax/63/48887#PublicationXref18351> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10550206" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18357
+<http://www.reactome.org/biopax/63/48887#PublicationXref18357> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:23538671" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18358
+<http://www.reactome.org/biopax/63/48887#PublicationXref18358> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9791012" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18359
+<http://www.reactome.org/biopax/63/48887#PublicationXref18359> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-167152" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:1995941" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/495333577> <http://geneontology.org/lego/modelstate> "development" ;
+<http://model.geneontology.org/481562967> <http://geneontology.org/lego/modelstate> "development" ;
                                           <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-167152" ;
-                                          <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
+                                          <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
                                           <http://purl.org/dc/elements/1.1/title> "Reactome:Formation of HIV elongation complex in the absence of HIV Tat" .
 
 

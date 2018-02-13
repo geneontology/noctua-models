@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/115127832#> .
+@prefix : <http://model.geneontology.org/-209524150#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/115127832> .
+@base <http://model.geneontology.org/-209524150> .
 
-<http://model.geneontology.org/115127832> rdf:type owl:Ontology .
+<http://model.geneontology.org/-209524150> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -51,19 +71,45 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0000186
 <http://purl.obolibrary.org/obo/GO_0000186> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0000186> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13356> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13358>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0007264
 <http://purl.obolibrary.org/obo/GO_0007264> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0007264> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13354>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0007265
 <http://purl.obolibrary.org/obo/GO_0007265> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0007265> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13353>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0008150
@@ -77,6 +123,11 @@
                                             rdfs:label "Macromolecular Complex" .
 
 
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
+
+
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
 <http://www.biopax.org/release/biopax-level3.owl#Protein> rdf:type owl:Class ;
                                                           rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
@@ -88,45 +139,223 @@
 #################################################################
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway990
-<http://www.reactome.org/biopax/63/48887#Pathway990> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway990> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Nasi, S, Annibali, D, 2006-10-10 09:07:07" ,
+                                                                                                   "Edited: Jassal, Bijay, 2006-10-10" ,
+                                                                                                   "Reviewed: Greene, LA, 2007-11-08 15:39:37" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Trk receptors signal from the plasma membrane and from intracellular membranes, particularly from early endosomes. Signalling from the plasma membrane is fast but transient; signalling from endosomes is slower but long lasting. Signalling from the plasma membrane is annotated here. TRK signalling leads to proliferation in some cell types and neuronal differentiation in others. Proliferation is the likely outcome of short term signalling, as observed following stimulation of EGFR (EGF receptor). Long term signalling via TRK receptors, instead, was clearly shown to be required for neuronal differentiation in response to neurotrophins." ;
                                                      rdfs:label "NGF signalling via TRKA from the plasma membrane" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway994
-<http://www.reactome.org/biopax/63/48887#Pathway994> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway994> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway990> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway995> ,
                                                                                                   <http://www.reactome.org/biopax/63/48887#Pathway997> ,
                                                                                                   <http://www.reactome.org/biopax/63/48887#Pathway998> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Nasi, S, Annibali, D, 2006-10-10 09:07:07" ,
+                                                                                                   "Edited: Jassal, Bijay, 2006-10-10" ,
+                                                                                                   "Reviewed: Greene, LA, 2007-11-08 15:39:37" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Neurotrophins utilize multiple pathways to activate ERKs (ERK1 and ERK2), a subgroup of the large MAP kinase (MAPK) family, from the plasma membrane. The major signalling pathways to ERKs are via RAS, ocurring from caveolae in the plasma membrane or from clathrin-coated vesicles, and via RAP1, taking place in early endosomes. Whereas RAS activation by NGF is transient, RAP1 activation by NGF is sustained for hours." ;
                                                      rdfs:label "Signalling to ERKs" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway994> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway990> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13359>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway994> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway995> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13359>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway994> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway997> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13359>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway994> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway998> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13359>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway995
 <http://www.reactome.org/biopax/63/48887#Pathway995> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0007265> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0007265> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  630 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 1060 ,
+                                                                                                  160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Nasi, S, Annibali, D, 2006-10-10 09:07:07" ,
+                                                                                                   "Edited: Jassal, Bijay, 2006-10-10" ,
+                                                                                                   "Reviewed: Greene, LA, 2007-11-08 15:39:37" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Signalling through Shc adaptor proteins appears to be identical for both NGF and EGF. It leads to a fast, but transient, MAPK/ERK activation, which is insufficient to explain the prolonged activation of MAPK found in NGF-treated cells." ;
                                                      rdfs:label "Signalling to RAS" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway995> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0007265> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13353>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway997
 <http://www.reactome.org/biopax/63/48887#Pathway997> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0007264> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0007264> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  930 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 1360 ,
+                                                                                                  160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Nasi, S, Annibali, D, 2006-10-10 09:07:07" ,
+                                                                                                   "Edited: Jassal, Bijay, 2006-10-10" ,
+                                                                                                   "Reviewed: Greene, LA, 2007-11-08 15:39:37" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "RIT and RIN are two small guanine nucleotide binding proteins that share more than 50% sequence identity with RAS, including highly conserved core effector domains. Unlike RAS, the C termini of RIT and RIN lack a typical prenylation motif (CAAX, XXCC, or CXC) required for the association of RAS proteins with the plasma membrane. RIT is expressed in all tissues, whereas RIN is neuron-specific. They have similar signalling properties and are activated by NGF through unknown exchange factors. They signal to ERKs and p38 MAP kinase. They mainly lead to p38 activation via the BRAF-MEK kinase cascade." ;
                                                      rdfs:label "Signalling to p38 via RIT and RIN" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway997> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0007264> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13354>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway998
 <http://www.reactome.org/biopax/63/48887#Pathway998> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0000186> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0000186> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  330 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  760 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Nasi, S, Annibali, D, 2006-10-10 09:07:07" ,
+                                                                                                   "Edited: Jassal, Bijay, 2006-10-10" ,
+                                                                                                   "Reviewed: Greene, LA, 2007-11-08 15:39:37" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "After NGF binding, activated Trk receptors provide multiple docking sites for adaptor proteins and enzymes. Two docking proteins, the Ankyrin-Rich Membrane Spanning protein (ARMS/Kidins220) and Fibroblast growth factor receptor substrate 2 (Frs2), target signaling molecules in response to NGF stimulation and link receptor activation with the MAP kinase (also called the Extracellular signal-Regulated Kinase cascade, ERK) cascade, an essential process for growth factor-induced cell proliferation and differentiation.<br>A feature of NGF signaling is the sustained activation of the MAPK cascade. This is achieved by the small G protein, Rap1 which binds to and activates B-Raf, an activator of the MAPK cascade. Rap1 is a member of the Ras family of G proteins and like all G proteins, Rap1 is in an inactive state when bound to GDP and is active when bound to GTP. A specific GEF (guanine nucleotide exchange factor) called C3G can activate Rap1 by exchanging GDP for GTP." ;
                                                      rdfs:label "Prolonged ERK activation events" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway998> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0000186> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13356> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13358>
+ ] .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13323
+<http://www.reactome.org/biopax/63/48887#PublicationXref13323> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12676795" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13353
+<http://www.reactome.org/biopax/63/48887#PublicationXref13353> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11520933" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13354
+<http://www.reactome.org/biopax/63/48887#PublicationXref13354> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10712923" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13356
+<http://www.reactome.org/biopax/63/48887#PublicationXref13356> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9069267" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13358
+<http://www.reactome.org/biopax/63/48887#PublicationXref13358> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12765839" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13359
+<http://www.reactome.org/biopax/63/48887#PublicationXref13359> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10508738" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13370
+<http://www.reactome.org/biopax/63/48887#PublicationXref13370> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10851172" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13371
+<http://www.reactome.org/biopax/63/48887#PublicationXref13371> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10579918" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/115127832> <http://geneontology.org/lego/modelstate> "development" ;
-                                          <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
-                                          <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
-                                          <http://purl.org/dc/elements/1.1/title> "Reactome:Signalling to ERKs" .
+<http://model.geneontology.org/-209524150> <http://geneontology.org/lego/modelstate> "development" ;
+                                           <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-187687" ;
+                                           <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                           <http://purl.org/dc/elements/1.1/title> "Reactome:Signalling to ERKs" .
 
 
 <http://purl.obolibrary.org/obo/BFO_0000066> rdfs:label "occurs in" .

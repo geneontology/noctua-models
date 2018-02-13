@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/2071364590#> .
+@prefix : <http://model.geneontology.org/-551462624#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/2071364590> .
+@base <http://model.geneontology.org/-551462624> .
 
-<http://model.geneontology.org/2071364590> rdf:type owl:Ontology .
+<http://model.geneontology.org/-551462624> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -51,9 +71,22 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0007596
 <http://purl.obolibrary.org/obo/GO_0007596> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0007596> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19016> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19655>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0008150
@@ -65,11 +98,30 @@
 <http://purl.obolibrary.org/obo/GO_0030168> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0030168> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0032991
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -83,19 +135,49 @@
 #################################################################
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1131
-<http://www.reactome.org/biopax/63/48887#Pathway1131> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1131> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 1230 ,
+                                                                                                   30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   1660 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Edited: Jupe, S, 2009-09-09" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Hydrolysis of phosphatidyl inositol-bisphosphate (PIP2) by phospholipase C (PLC) produces diacylglycerol (DAG) and inositol triphosphate (IP3). Both are potent second messengers. IP3 diffuses into the cytosol, but as DAG is a hydrophobic lipid it remains within the plasma membrane. IP3 stimulates the release of calcium ions from the smooth endoplasmic reticulum, while DAG activates the conventional and unconventional protein kinase C (PKC) isoforms, facilitating the translocation of PKC from the cytosol to the plasma membrane. The effects of DAG are mimicked by tumor-promoting phorbol esters. DAG is also a precursor for the biosynthesis of prostaglandins, the endocannabinoid 2-arachidonoylglycerol and an activator of a subfamily of TRP-C (Transient Receptor Potential Canonical) cation channels 3, 6, and 7." ;
                                                       rdfs:label "Effects of PIP2 hydrolysis" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1712
 <http://www.reactome.org/biopax/63/48887#Pathway1712> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0007596> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0007596> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: D'Eustachio, P, Pace, N.P., Farndale, R, de Bono, B, 2004-01-21 22:18:59" ,
+                                                                                                    "Edited: Joshi-Tope, G, 0000-00-00 00:00:00" ,
+                                                                                                    "Reviewed: Brummel, K, Rush, MG, Stafford, DW, 0000-00-00 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Hemostasis is a physiological response that culminates in the arrest of bleeding from an injured vessel. Under normal conditions the vascular endothelium supports vasodilation, inhibits platelet adhesion and activation, suppresses coagulation, enhances fibrin cleavage and is anti-inflammatory in character. Under acute vascular trauma, vasoconstrictor mechanisms predominate and the endothelium becomes prothrombotic, procoagulatory and proinflammatory in nature. This is achieved by a reduction of endothelial dilating agents: adenosine, NO and prostacyclin; and by the direct action of ADP, serotonin and thromboxane on vascular smooth muscle cells to elicit their contraction (Becker et al. 2000). The chief trigger for the change in endothelial function that leads to the formation of a haemostatic thrombus is the loss of the endothelial cell barrier between blood and extracellular matrix components (Ruggeri 2002). Circulating platelets identify and discriminate areas of endothelial lesions; here, they adhere to the exposed sub endothelium. Their interaction with the various thrombogenic substrates and locally generated or released agonists results in platelet activation. This process is described as possessing two stages, firstly, adhesion - the initial tethering to a surface, and secondly aggregation - the platelet-platelet cohesion (Savage & Cattaneo et al. 2001). Three mechansism contribute to the loss of blood following vessel injury. The vessel constricts, reducing the loss of blood. Platelets adhere to the site of injury, become activated and aggregate with fibrinogen into a soft plug that limits blood loss, a process termed primary hemostasis. Proteins and small molecules are released from granules by activated platelets, stimulating the plug formation process. Fibrinogen from plasma forms bridges between activated platelets. These events initiate the clotting cascade (secondary hemostasis). Negatively-charged phospholipids exposed at the site of injury and on activated platelets interact with tissue factor, leading to a cascade of reactions that culminates with the formation of an insoluble fibrin clot." ;
                                                       rdfs:label "Hemostasis" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1712> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0007596> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19016> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19655>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1722
 <http://www.reactome.org/biopax/63/48887#Pathway1722> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0030168> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0030168> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway1712> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway1131> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway1723> ,
@@ -104,46 +186,491 @@
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway1729> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway1730> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway1732> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: de Bono, B, 2004-08-13 07:29:26" ,
+                                                                                                    "Reviewed: Kunapuli, SP, 2010-06-07" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Platelet activation begins with the initial binding of adhesive ligands and of the excitatory platelet agonists (released or generated at the sites of vascular trauma) to cognate receptors on the platelet membrane (Ruggeri 2002). Intracellular signaling reactions then enhance the adhesive and procoagulant properties of tethered platelets or of platelets circulating in the proximity. Once platelets have adhered they degranulate, releasing stored secondary agents such as ADP, ATP, and synthesize thromboxane A2. These amplify the response, activating and recruiting further platelets to the area and promoting platelet aggregation. These amplify the response, activating and recruiting further platelets to the area and promoting platelet aggregation. Adenosine nucleotides signal through P2 purinergic receptors on the platelet membrane. ADP activates P2Y1 and P2Y12, which signal via both the alpha and gamma:beta components of the heterotrimeric G-protein (Hirsch et al. 2001, 2006), while ATP activates the ionotropic P2X1 receptor (Kunapuli et al. 2003). Activation of these receptors initiates a complex signaling cascade that ultimately results in platelet activation, aggregation and thrombus formation (Kahner et al. 2006). Integrin AlphaIIbBeta3 is the most abundant platelet receptor, with 40 000 to 80 000 copies per resting platelet, acting as a major receptor for fibrinogen and other adhesive molecules (Wagner et al. 1996). Activation of AlphaIIbBeta3 enhances adhesion and leads to platelet-platelet interactions, and thus aggregation (Philips et al. 1991). GP VI is the most potent collagen receptor initiating signal generation, an ability derived from its interaction with the FcRI gamma chain. This results in the phosphorylation of the gamma-chain by non-receptor tyrosine kinases of the Src family (1). The phosphotyrosine motif is recognized by the SH2 domains of Syk, a tyrosine kinase. This association activates the Syk enzyme, leading to activation (by tyrosine phosphorylation) of PLC gamma2 (2). Thrombin is an important platelet agonist generated on the membrane of stimulated platelets. Thrombin acts via cell surface Protease Activated Receptors (PARs). PARs are G-protein coupled receptors activated by a proteolytic cleavage in an extracellular loop (Vu, 1991) (3). Activated PARs signal via G alpha q (4) and via the beta:gamma component of the G-protein (5). Both stimulate PLC giving rise to PIP2 hydrolysis and consequent activation of PI3K (6). PLCgamma2 activation also gives rise to IP3 (7) which stimulates the IP3 receptor (8) leading to increased intracellular calcium. Platelet activation further results in the scramblase-mediated transport of negatively-charged phospholipids to the platelet surface. These phospholipids provide a catalytic surface (with the charge provided by phosphatidylserine and phosphatidylethanolamine) for the tenase complex (formed by the activated forms of the blood coagulation factors factor VIII and factor I)." ;
                                                       rdfs:label "Platelet activation, signaling and aggregation" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1729> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1730> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1732> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0030168> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1712> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1131> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1723> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1724> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1722> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1728> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref19076> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19077> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19078> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19079> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19080> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19189> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19190> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref19191>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1723
-<http://www.reactome.org/biopax/63/48887#Pathway1723> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1723> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   330 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   760 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Akkerman, JW, 2009-06-03" ,
+                                                                                                    "Edited: Jupe, S, 2010-06-07" ,
+                                                                                                    "Reviewed: Kunapuli, SP, 2010-06-07" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "The platelet GPIb complex (GP1b-IX-V) together with GPVI are primarily responsible for regulating the initial adhesion of platelets to the damaged blood vessel and platelet activation. The importance of GPIb is demonstrated by the bleeding problems in patients with Bernard-Soulier syndrome where this receptor is either absent or defective. GP1b-IX-V binds von Willebrand Factor (vWF) to resting platelets, particularly under conditions of high shear stress. This transient interaction is the first stage of the vascular repair process. Activation of GP1b-IX-V on exposure of the fibrous matrix following atherosclerotic plaque rupture, or in occluded arteries, is a major contributory factor leading to thrombus formation leading to heart attack or stroke. GpIb also binds thrombin (Yamamoto et al. 1986), at a site distinct from the site of vWF binding, acting as a docking site for thrombin which then activates Proteinase Activated Receptors leading to enhanced platelet activation (Dormann et al. 2000)." ;
                                                       rdfs:label "GP1b-IX-V activation signalling" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1724
-<http://www.reactome.org/biopax/63/48887#Pathway1724> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1724> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 2130 ,
+                                                                                                   30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   2560 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Akkerman, JW, 2009-06-03" ,
+                                                                                                    "Edited: Jupe, S, 2009-11-03" ,
+                                                                                                    "Reviewed: Harper, MT, 2009-11-02" ,
+                                                                                                    "Reviewed: Jones, ML, 2009-11-02" ,
+                                                                                                    "Reviewed: Poole, AW, 2009-11-02" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "In the initial response to injury, platelets adhere to damaged blood vessels, responding to the exposure of collagen from the vascular epithelium. Once adhered they degranulate, releasing stored secondary agents such as ADP and ATP, and synthesized thromboxane A2. These amplify the response, activating and recruiting further platelets to the area and promoting platelet aggregation. Adenosine nucleotides secreted following platelet activation signal through P2 purinergic receptors on the platelet membrane. ADP activates P2Y1 and P2Y12 while ATP activates the ionotropic P2X1 receptor (Kunapuli et al. 2003). Activation of these receptors initiates a complex signaling cascade that ultimately results in platelet activation and thrombus formation (Kahner et al. 2006). ADP stimulation of P2Y1 and P2Y12 involves signaling via both the alpha and gamma:beta components of the heterotrimeric G-protein (Hirsch et al. 2001, 2006)." ;
                                                       rdfs:label "Signal amplification" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1728
-<http://www.reactome.org/biopax/63/48887#Pathway1728> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1728> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 1530 ,
+                                                                                                   30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   1960 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Akkerman, JW, 2009-09-04" ,
+                                                                                                    "Edited: Jupe, S, 2010-06-07" ,
+                                                                                                    "Reviewed: Kunapuli, SP, 2010-06-07" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Thrombin activates proteinase activated receptors (PARs) that signal through heterotrimeric G proteins of the G12/13 and Gq families, thereby connecting to a host of intracellular signaling pathways. Thrombin activates PARs by cleaving an N-terminal peptide that then binds to the body of the receptor to effect transmembrane signaling. Intermolecular ligation of one PAR molecule by another can occur but is less efficient than self-ligation. A synthetic peptide of sequence SFLLRN, the first six amino acids of the new N-terminus generated when thrombin cleaves PAR1, can activate PAR1 independent of protease and receptor cleavage. PARs are key to platelet activation. Four PARs have been identified, of which PARs 1 ,3 and 4 are substrates for thrombin. In humans PAR 1 is the predominant thrombin receptor followed by PAR4 which is less responsive to thrombin. PAR 3 is not considered important for human platelet responses as it is minimally expressed, though this is not the case for mouse. PAR2 is not expressed in platelets. In mouse platelets, Gq is necessary for platelet secretion and aggregation in response to thrombin but is not necessary for thrombin-triggered shape change. G13 appears to contribute to platelet aggregation as well as shape change in response to low concentrations of thrombin but to be unnecessary at higher agonist concentrations; G12 appears to be dispensable for thrombin signaling in platelets. G alpha (q) activates phospholipase C beta thereby triggering phosphoinositide hydrolysis, calcium mobilization and protein kinase C activation. This provides a path to calcium-regulated kinases and phosphatases, GEFs, MAP kinase cassettes and other proteins that mediate cellular responses ranging from granule secretion, integrin activation, and aggregation in platelets. Gbeta:gamma subunits can activate phosphoinositide-3 kinase and other lipid modifying enzymes, protein kinases, and channels. PAR1 activation indirectly leads to activation of cell surface 'sheddases' that liberate ligands for receptor tyrosine kinases, providing a link between thrombin and receptor tyrosine kinases involved in cell growth and differentiation. The pleiotrophic effects of PAR activation are consistent with many of thrombin's diverse actions on cells." ;
                                                       rdfs:label "Thrombin signalling through proteinase activated receptors (PARs)" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1729
-<http://www.reactome.org/biopax/63/48887#Pathway1729> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1729> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 1830 ,
+                                                                                                   30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   2260 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Edited: Jupe, S, 2009-11-03" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "The GPVI receptor is a complex of the GPVI protein with Fc epsilon R1 gamma (FcR). The Src family kinases Fyn and Lyn constitutively associate with the GPVI-FcR complex in platelets and initiate platelet activation through phosphorylation of the immunoreceptor tyrosine-based activation motif (ITAM) in the FcR gamma chain, leading to binding and activation of the tyrosine kinase Syk. Downstream of Syk, a series of adapter molecules and effectors lead to platelet activation. <br><br>The GPVI receptor signaling cascade is similar to that of T- and B-cell immune receptors, involving the formation of a signalosome composed of adapter and effector proteins. At the core of the T-cell receptor signalosome is the transmembrane adapter LAT and two cytosolic adapters SLP-76 and Gads. While LAT is essential for signalling to PLCgamma1 downstream of the T-cell receptor, the absence of LAT in platelets only impairs the activation of PLCgamma2, the response to collagen and GPVI receptor ligands remains sufficient to elicit a full aggregation response. In contrast, GPVI signalling is almost entirely abolished in the absence of SLP-76." ;
                                                       rdfs:label "GPVI-mediated activation cascade" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1730
-<http://www.reactome.org/biopax/63/48887#Pathway1730> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1730> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   930 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 1360 ,
+                                                                                                   160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: de Bono, B, 2004-08-13 07:29:26" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "The tethering of platelets to the site of vascular injury is the first step in the formation of a platelet thrombus. Firm adhesion of these tethered platelets, as well as the additional recruitment of others onto their surface leads to the formation of large platelet aggregates. The formation of a thrombus is strictly dependent on the formation of interplatelet bonds." ;
                                                       rdfs:label "Platelet Aggregation (Plug Formation)" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1732
-<http://www.reactome.org/biopax/63/48887#Pathway1732> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1732> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   630 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 1060 ,
+                                                                                                   160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: de Bono, B, 2004-08-13 07:29:26" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Activation of phospholipase C enzymes results in the generation of second messengers of the phosphatidylinositol pathway. The events resulting from this pathway are a rise in intracellular calcium and activation of Protein Kinase C (PKC). Phospholipase C cleaves the phosphodiester bond in PIP2 to form 1,2 Diacylglycerol (DAG) and 1,4,5-inositol trisphosphate (IP3). IP3 opens Ca2+ channels in the platelet dense tubular system, raising intracellular Ca2+ levels. DAG is a second messenger that regulates a family of Ser/Thr kinases consisting of PKC isozymes (Nishizuka 1995). DAG achieves activation of PKC isozymes by increasing their affinity for phospholipid. Most PKC enzymes are also calcium-dependent, so their activation is in synergy with the rise in intracellular Ca2+. Platelets contain several PKC isoforms that can be activated by DAG and/or Ca2+ (Chang 1997)." ;
                                                       rdfs:label "Response to elevated platelet cytosolic Ca2+" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref14971
+<http://www.reactome.org/biopax/63/48887#PublicationXref14971> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9601053" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref14994
+<http://www.reactome.org/biopax/63/48887#PublicationXref14994> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:17157506" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref15007
+<http://www.reactome.org/biopax/63/48887#PublicationXref15007> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:16102047" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref16007
+<http://www.reactome.org/biopax/63/48887#PublicationXref16007> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:16102042" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19016
+<http://www.reactome.org/biopax/63/48887#PublicationXref19016> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10798271" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19027
+<http://www.reactome.org/biopax/63/48887#PublicationXref19027> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11943772" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19031
+<http://www.reactome.org/biopax/63/48887#PublicationXref19031> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:15507277" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19057
+<http://www.reactome.org/biopax/63/48887#PublicationXref19057> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11001899" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19058
+<http://www.reactome.org/biopax/63/48887#PublicationXref19058> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:17597991" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19059
+<http://www.reactome.org/biopax/63/48887#PublicationXref19059> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:2424116" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19060
+<http://www.reactome.org/biopax/63/48887#PublicationXref19060> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:17585075" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19075
+<http://www.reactome.org/biopax/63/48887#PublicationXref19075> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:18077812" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19076
+<http://www.reactome.org/biopax/63/48887#PublicationXref19076> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:16543958" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19077
+<http://www.reactome.org/biopax/63/48887#PublicationXref19077> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11511514" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19078
+<http://www.reactome.org/biopax/63/48887#PublicationXref19078> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12681240" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19079
+<http://www.reactome.org/biopax/63/48887#PublicationXref19079> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:17059469" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19080
+<http://www.reactome.org/biopax/63/48887#PublicationXref19080> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:1672265" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19083
+<http://www.reactome.org/biopax/63/48887#PublicationXref19083> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:8982657" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19091
+<http://www.reactome.org/biopax/63/48887#PublicationXref19091> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11001069" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19134
+<http://www.reactome.org/biopax/63/48887#PublicationXref19134> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:17127307" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19135
+<http://www.reactome.org/biopax/63/48887#PublicationXref19135> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12649139" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19144
+<http://www.reactome.org/biopax/63/48887#PublicationXref19144> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:18174460" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19188
+<http://www.reactome.org/biopax/63/48887#PublicationXref19188> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:8424766" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19189
+<http://www.reactome.org/biopax/63/48887#PublicationXref19189> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12411949" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19190
+<http://www.reactome.org/biopax/63/48887#PublicationXref19190> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:8704248" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19191
+<http://www.reactome.org/biopax/63/48887#PublicationXref19191> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:2018971" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref19655
+<http://www.reactome.org/biopax/63/48887#PublicationXref19655> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11604561" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/2071364590> <http://geneontology.org/lego/modelstate> "development" ;
+<http://model.geneontology.org/-551462624> <http://geneontology.org/lego/modelstate> "development" ;
                                            <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-76002" ;
-                                           <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
+                                           <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
                                            <http://purl.org/dc/elements/1.1/title> "Reactome:Platelet activation, signaling and aggregation" .
 
 

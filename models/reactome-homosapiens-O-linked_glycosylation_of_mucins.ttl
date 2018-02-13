@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/1041215906#> .
+@prefix : <http://model.geneontology.org/782607956#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/1041215906> .
+@base <http://model.geneontology.org/782607956> .
 
-<http://model.geneontology.org/1041215906> rdf:type owl:Ontology .
+<http://model.geneontology.org/782607956> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -465,6 +485,10 @@
                                              rdfs:label "CHEBI_18307" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0000139
 <http://purl.obolibrary.org/obo/GO_0000139> rdf:type owl:Class ;
                                             rdfs:label "Golgi membrane" .
@@ -490,6 +514,14 @@
 ###  http://purl.obolibrary.org/obo/GO_0006493
 <http://purl.obolibrary.org/obo/GO_0006493> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0006493> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref943>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0008150
@@ -517,11 +549,23 @@
 <http://purl.obolibrary.org/obo/GO_0016266> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0016266> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0032991
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -543,7 +587,6 @@
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0004653> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1668-1394495454> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule330-1394495454> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1687-1394495454> ,
@@ -555,99 +598,363 @@
                                                                                                              <http://www.reactome.org/biopax/63/48887#BiochemicalReaction412> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#BiochemicalReaction414> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#BiochemicalReaction415> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3630 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of GalNAc to mucins to form the Tn antigen" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction414> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction415> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0004653> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref904> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref906>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref904> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref906>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Protein1706-1394495454> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref904> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref906>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction411> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction412> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction405
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0016263> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1687-1394495453> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule325-1394495453> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1727-1394495453> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495453> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Complex520-1394495453> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002413> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "C1GALT1 transfers Galactose to the Tn antigen forming Core 1 glycoproteins (T antigens)" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0016263> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref907> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref907> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Complex520-1394495453> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref907> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction406
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0003829> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1727-1394495452> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495452> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1748-1394495452> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495452> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Protein1767-1394495452> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002413> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "GCNTs transfer GlcNAc from UDP-GlcNAc to Core 1 mucins" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0003829> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref910> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref911>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref910> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref911>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Protein1767-1394495452> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref910> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref911>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction407
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0001517> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1748-1394495451> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule321-1394495451> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1773-1394495451> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule322-1394495451> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Protein1792-1394495451> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1830 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "CHST4 transfers SO4(2-) from PAPS to Core 2 mucins" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0001517> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref912> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref912> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Protein1792-1394495451> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref912> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref913>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction408
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction408> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0008375> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1748-1394495450> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495450> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1793-1394495450> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495450> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Protein1812-1394495450> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3330 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "A4GNT transfers GlcNAc to core 2 mucins" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction408> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008375> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref914> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref915>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction408> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref914> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref915>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction408> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Protein1812-1394495450> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref914> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref915>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction409
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0008499> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1687-1394495449> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495449> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1813-1394495449> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495449> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Protein1832-1394495449> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002413> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of GlcNAc to the Tn antigen forms a Core 3 glycoprotein" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008499> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref916> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref917> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref918> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref919> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref921> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref922> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref923>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref916> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref917> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref918> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref919> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref921> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref922> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref923>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Protein1832-1394495449> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref916> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref917> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref918> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref919> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref921> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref922> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref923>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction410
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0003829> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1813-1394495427> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495427> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1842-1394495427> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495427> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Protein1769-1394495427> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of GlcNAc to Core 3 forms a Core 4 glycoprotein" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0003829> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref924>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref924>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Protein1769-1394495427> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref924>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction411
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction411> rdf:type owl:NamedIndividual ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4112113972281> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1687-1394495426> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495426> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1861-1394495426> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495426> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2730 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of GlcNAc to the Tn antigen via an alpha-1,3 linkage forms a Core 5 glycoprotein" .
 
 
@@ -659,14 +966,22 @@
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction412
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction412> rdf:type owl:NamedIndividual ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4122113972281> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1687-1394495425> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495425> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1880-1394495425> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495425> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002413> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1530 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of GlcNAc to the Tn antigen via a beta-1,6 linkage forms a Core 6 glycoprotein" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction412> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction4122113972281
@@ -678,24 +993,47 @@
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> rdf:type owl:NamedIndividual ,
                                                                           <http://purl.obolibrary.org/obo/GO_0008378> ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1880-1394495424> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule325-1394495424> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1899-1394495424> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495424> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Protein1918-1394495424> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2130 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of galactose to Core 6 glycoprotein" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008378> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref926>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref926>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Protein1918-1394495424> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref926>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction414
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction414> rdf:type owl:NamedIndividual ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4142113972281> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1687-1394495423> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule330-1394495423> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1919-1394495423> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495423> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2430 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of GalNAc to the Tn antigen via an alpha-1,6 linkage forms a Core 7 glycoprotein" .
 
 
@@ -707,12 +1045,13 @@
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction415
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction415> rdf:type owl:NamedIndividual ,
                                                                           <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                 <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway106> ;
                                                                  <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4152113972281> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Protein1687-1394495422> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule325-1394495422> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Protein1938-1394495422> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495422> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3030 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 160 ;
                                                                  rdfs:label "Addition of galactose to the Tn antigen via an alpha-1,3 linkage forms a Core 8 glycoprotein" .
 
 
@@ -808,12 +1147,16 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1305822741
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1305822741> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 380 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1305822742
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1305822742> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 1280 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1326539976
@@ -828,22 +1171,30 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694583
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694583> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694585
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694585> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 3380 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694607
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694607> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694671
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694671> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1381395922
@@ -948,17 +1299,23 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546037
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546037> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 1280 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546038
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546038> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 1880 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546039
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546039> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 3330 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-177079784
@@ -983,7 +1340,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-180411237
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-180411237> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 2180 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1826279784
@@ -993,7 +1352,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1844793424
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1844793424> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 3680 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1905300844
@@ -1043,12 +1404,16 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-2034309260
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-2034309260> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-2034309324
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-2034309324> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 680 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-204118574
@@ -1223,7 +1588,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121005798642
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121005798642> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 1880 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121019902255
@@ -1393,7 +1760,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121251366232
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121251366232> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 680 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121252552092
@@ -1453,7 +1822,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121312804946
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121312804946> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 1830 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121313305262
@@ -1528,7 +1899,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121441887665
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121441887665> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 1830 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121442387981
@@ -1588,37 +1961,51 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207863
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207863> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 2130 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207866
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207866> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207930
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207930> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 980 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207952
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207952> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 3380 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207954
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207954> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207955
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207955> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207956
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207956> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 3630 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121623561211
@@ -1708,17 +2095,23 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285113
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285113> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 980 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285138
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285138> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 380 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285139
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285139> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 3680 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121744159143
@@ -1793,12 +2186,16 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121829135732
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121829135732> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 2130 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121829135824
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121829135824> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12188908436
@@ -1978,7 +2375,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12418992627
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12418992627> rdf:type owl:NamedIndividual ,
-                                                                                         <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                         <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                <http://geneontology.org/lego/hint/layout/x> 3330 ;
+                                                                                <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12442818209
@@ -2113,7 +2512,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12687930227
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12687930227> rdf:type owl:NamedIndividual ,
-                                                                                         <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                         <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                <http://geneontology.org/lego/hint/layout/x> 2180 ;
+                                                                                <http://geneontology.org/lego/hint/layout/y> 460 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12702379280
@@ -2233,7 +2634,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12890319223
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12890319223> rdf:type owl:NamedIndividual ,
-                                                                                         <http://purl.obolibrary.org/obo/GO_0005796> .
+                                                                                         <http://purl.obolibrary.org/obo/GO_0005796> ;
+                                                                                <http://geneontology.org/lego/hint/layout/x> 3630 ;
+                                                                                <http://geneontology.org/lego/hint/layout/y> -140 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12890819536
@@ -2378,7 +2781,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-1894454357
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-1894454357> rdf:type owl:NamedIndividual ,
-                                                                                           <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                           <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                  <http://geneontology.org/lego/hint/layout/x> 2080 ;
+                                                                                  <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-1979347896
@@ -2418,7 +2823,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-848099445
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-848099445> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 3580 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-878145648
@@ -2458,7 +2865,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary131544769303
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary131544769303> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 880 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary131619870289
@@ -2468,7 +2877,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary131815532526
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary131815532526> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 1180 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13193384179
@@ -2483,12 +2894,16 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary132073697876
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary132073697876> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 580 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary132131575339
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary132131575339> rdf:type owl:NamedIndividual ,
-                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                          <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                 <http://geneontology.org/lego/hint/layout/x> 3280 ;
+                                                                                 <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary132138459744
@@ -2508,7 +2923,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13289909909
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13289909909> rdf:type owl:NamedIndividual ,
-                                                                                         <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                         <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                <http://geneontology.org/lego/hint/layout/x> 1780 ;
+                                                                                <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13341508385
@@ -2533,17 +2950,9 @@
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13554142966
 <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13554142966> rdf:type owl:NamedIndividual ,
-                                                                                         <http://purl.obolibrary.org/obo/GO_0000139> .
-
-
-###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13720232959
-<http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13720232959> rdf:type owl:NamedIndividual ,
-                                                                                         <http://purl.obolibrary.org/obo/GO_0000139> .
-
-
-###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13916746464
-<http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13916746464> rdf:type owl:NamedIndividual ,
-                                                                                         <http://purl.obolibrary.org/obo/GO_0000139> .
+                                                                                         <http://purl.obolibrary.org/obo/GO_0000139> ;
+                                                                                <http://geneontology.org/lego/hint/layout/x> 280 ;
+                                                                                <http://geneontology.org/lego/hint/layout/y> 10 .
 
 
 ###  http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13918805711
@@ -2557,26 +2966,172 @@
                                                                 <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Protein1746554142966> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#Protein1747554142966> ;
                                                                 <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13554142966> ;
+                                                                <http://geneontology.org/lego/hint/layout/x> 280 ;
+                                                                <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                 rdfs:label "C1GALT1:C1GALT1C1" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway104
 <http://www.reactome.org/biopax/63/48887#Pathway104> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0006493> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0006493> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jassal, B, 2013-11-25" ,
+                                                                                                   "Edited: Jassal, B, 2013-11-25" ,
+                                                                                                   "Reviewed: D'Eustachio, Peter, 2014-02-07" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "O-glycosylation is an important post-translational modification (PTM) required for correct functioning of many proteins (Van den Steen et al. 1998, Moremen et al. 2012). The O-glycosylation of proteins containing thrombospondin type 1 repeat (TSR) domains and O-glycosylation of mucins are currently described here." ;
                                                      rdfs:label "O-linked glycosylation" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway104> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0006493> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref943>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway106
 <http://www.reactome.org/biopax/63/48887#Pathway106> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0016266> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0016266> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway104> ;
-                                                     <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway107> ;
+                                                     <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction408> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction411> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction412> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction414> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction415> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#Pathway107> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jassal, B, 2010-07-19" ,
+                                                                                                   "Edited: Jassal, B, 2010-07-19" ,
+                                                                                                   "Reviewed: Ferrer, A, 2011-11-04" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Mucins are a family of high molecular weight, heavily glycosylated proteins (glycoconjugates) produced by epithelial tissues in most metazoa. Mucins' key characteristic is their ability to form gels; therefore they are a key component in most gel-like secretions, serving functions from lubrication to cell signalling to forming chemical barriers. To date, there are approximately 20 genes that express mucins. Mature mucins are composed of two distinct regions:<br>(1) The amino- and carboxy-terminal regions are very lightly glycosylated, but rich in cysteines. The cysteine residues participate in establishing disulfide linkages within and among mucin monomers.<br>(2) A large central region rich in serine, threonine and proline residues called the variable number of tandem repeat (VNTR) region which can become heavily O-glycosylated with hundreds of O-GalNAc glycans.<br> N-acetyl-galactosamine (GalNAc) is the first glycan to be attached, forming the simplest mucin O-glycan. After this, several different pathways are possible generating \"core\" structures. Four core structures are commonly formed, several others are possible but infrequent. O-linked glycans are often capped by the addition of a sialic acid residue, terminating the addition of any more O-glycans (Brockhausen et al, 2009; Tarp and Clausen, 2008)." ;
                                                      rdfs:label "O-linked glycosylation of mucins" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0016266> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway104> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction404> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref904> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref906>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction405> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref907> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction406> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref910> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref911>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction407> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref912> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction408> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref914> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref915>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction409> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref916> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref917> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref918> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref919> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref921> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref922> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref923>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction410> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref909> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref924>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction413> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref926>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway106> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway107> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref929>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway107
 <http://www.reactome.org/biopax/63/48887#Pathway107> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0016266> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0016266> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  3930 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  760 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jassal, B, 2010-10-15" ,
+                                                                                                   "Edited: Jassal, B, 2010-10-15" ,
+                                                                                                   "Reviewed: Ferrer, A, 2011-11-04" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "O-glycan biosynthesis can be terminated (or modified) by the addition of sialic acid residues on Core 1 and 2 glycoproteins by sialyltransferases (Varki et al. 2009)." ;
                                                      rdfs:label "Termination of O-glycan biosynthesis" .
 
 
@@ -2615,6 +3170,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1685-1844793424> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1686-1844793424> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1844793424> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3680 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Mucins" .
 
 
@@ -2764,6 +3321,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17031734285044> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17041734285044> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17051734285044> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3030 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Tn antigens" .
 
 
@@ -2787,6 +3346,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17031734285045> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17041734285045> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17051734285045> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2430 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Tn antigens" .
 
 
@@ -2810,6 +3371,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17031734285047> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17041734285047> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17051734285047> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1580 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Tn antigens" .
 
 
@@ -2833,6 +3396,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17031734285048> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17041734285048> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17051734285048> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2730 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Tn antigens" .
 
 
@@ -2857,6 +3422,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17041734285113> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17051734285113> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285113> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 980 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Tn antigens" .
 
 
@@ -2881,6 +3448,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17041734285138> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17051734285138> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285138> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 380 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Tn antigens" .
 
 
@@ -2905,6 +3474,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17041734285139> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17051734285139> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121734285139> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3680 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Tn antigens" .
 
 
@@ -3741,6 +4312,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1725-848099445> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1726-848099445> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-848099445> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3580 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                  rdfs:label "GALNTs" .
 
 
@@ -3905,6 +4478,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1744-1305822742> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1745-1305822742> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1305822742> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1280 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "T antigens" .
 
 
@@ -3929,6 +4504,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1744-1305822741> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1745-1305822741> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1305822741> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 380 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "T antigens" .
 
 
@@ -4187,14 +4764,12 @@
 ###  http://www.reactome.org/biopax/63/48887#Protein1746554142966
 <http://www.reactome.org/biopax/63/48887#Protein1746554142966> rdf:type owl:NamedIndividual ,
                                                                         <http://identifiers.org/uniprot/Q96EU7> ;
-                                                               <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13916746464> ;
                                                                rdfs:label "COSMC" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Protein1747554142966
 <http://www.reactome.org/biopax/63/48887#Protein1747554142966> rdf:type owl:NamedIndividual ,
                                                                         <http://identifiers.org/uniprot/Q9NS00> ;
-                                                               <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13720232959> ;
                                                                rdfs:label "C1GALT1" .
 
 
@@ -4219,6 +4794,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1765-1763546039> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1766-1763546039> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546039> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3330 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Core 2 mucins" .
 
 
@@ -4243,6 +4820,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1765-1763546038> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1766-1763546038> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546038> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1880 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Core 2 mucins" .
 
 
@@ -4267,6 +4846,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1765-1763546037> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1766-1763546037> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1763546037> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1280 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 2 mucins" .
 
 
@@ -4656,6 +5237,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17711815532526> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17721815532526> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary131815532526> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1180 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                  rdfs:label "GCNTs" .
 
 
@@ -4670,6 +5253,8 @@
 <http://www.reactome.org/biopax/63/48887#Protein1769-1394495427> rdf:type owl:NamedIndividual ,
                                                                           <http://identifiers.org/uniprot/O95395> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary132073697876> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 580 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                  rdfs:label "GCNT3" .
 
 
@@ -4722,6 +5307,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17901005798642> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein17911005798642> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121005798642> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1880 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 2S mucins" .
 
 
@@ -4855,6 +5442,8 @@
 <http://www.reactome.org/biopax/63/48887#Protein1792-1394495451> rdf:type owl:NamedIndividual ,
                                                                           <http://identifiers.org/uniprot/Q8NCG5> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13289909909> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1780 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                  rdfs:label "CHST4" .
 
 
@@ -4879,6 +5468,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1810418992627> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1811418992627> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12418992627> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3330 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 2a mucins" .
 
 
@@ -5012,6 +5603,8 @@
 <http://www.reactome.org/biopax/63/48887#Protein1812-1394495450> rdf:type owl:NamedIndividual ,
                                                                           <http://identifiers.org/uniprot/Q9UNA3> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary132131575339> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3280 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                  rdfs:label "A4GNT" .
 
 
@@ -5036,6 +5629,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1830-2034309324> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1831-2034309324> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-2034309324> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 680 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Core 3 mucins" .
 
 
@@ -5060,6 +5655,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1830-2034309260> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1831-2034309260> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-2034309260> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 3 mucins" .
 
 
@@ -5327,6 +5924,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein18401544769303> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein18411544769303> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary131544769303> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 880 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                  rdfs:label "B3GNTs" .
 
 
@@ -5414,6 +6013,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein18591251366232> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein18601251366232> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121251366232> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 680 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 4 mucins" .
 
 
@@ -5563,6 +6164,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1877535477498> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1878535477498> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1879535477498> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2730 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 5 mucins" .
 
 
@@ -5695,6 +6298,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1897-180411237> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1898-180411237> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-180411237> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2180 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                  rdfs:label "Core 6 mucins" .
 
 
@@ -5718,6 +6323,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1896-180411236> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1897-180411236> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1898-180411236> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 1580 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 6 mucins" .
 
 
@@ -5976,6 +6583,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1916687930227> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1917687930227> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12687930227> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2180 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "extended Core 6 mucins" .
 
 
@@ -6110,6 +6719,8 @@
                                                                  <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Protein1544-1894454357> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1545-1894454357> ;
                                                                  <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary13-1894454357> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2080 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 60 ;
                                                                  rdfs:label "B4GALT5" .
 
 
@@ -6133,6 +6744,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1935-1765371639> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1936-1765371639> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein1937-1765371639> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 2480 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 7 mucins" .
 
 
@@ -6264,6 +6877,8 @@
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein19541813706923> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein19551813706923> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein19561813706923> ;
+                                                                 <http://geneontology.org/lego/hint/layout/x> 3030 ;
+                                                                 <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                  rdfs:label "Core 8 mucins" .
 
 
@@ -6375,15 +6990,244 @@
                                                                 rdfs:label "MUCL1" .
 
 
+###  http://www.reactome.org/biopax/63/48887#PublicationXref903
+<http://www.reactome.org/biopax/63/48887#PublicationXref903> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:22722607" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref904
+<http://www.reactome.org/biopax/63/48887#PublicationXref904> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:9295285" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref905
+<http://www.reactome.org/biopax/63/48887#PublicationXref905> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:22183981" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref906
+<http://www.reactome.org/biopax/63/48887#PublicationXref906> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:9394011" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref907
+<http://www.reactome.org/biopax/63/48887#PublicationXref907> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:24643043" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref908
+<http://www.reactome.org/biopax/63/48887#PublicationXref908> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:18537974" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref909
+<http://www.reactome.org/biopax/63/48887#PublicationXref909> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:9915862" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref910
+<http://www.reactome.org/biopax/63/48887#PublicationXref910> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:10753916" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref911
+<http://www.reactome.org/biopax/63/48887#PublicationXref911> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:1329093" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref912
+<http://www.reactome.org/biopax/63/48887#PublicationXref912> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:12855678" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref913
+<http://www.reactome.org/biopax/63/48887#PublicationXref913> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:10330415" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref914
+<http://www.reactome.org/biopax/63/48887#PublicationXref914> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:10430883" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref915
+<http://www.reactome.org/biopax/63/48887#PublicationXref915> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:11304796" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref916
+<http://www.reactome.org/biopax/63/48887#PublicationXref916> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:9417100" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref917
+<http://www.reactome.org/biopax/63/48887#PublicationXref917> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:15620693" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref918
+<http://www.reactome.org/biopax/63/48887#PublicationXref918> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:11042166" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref919
+<http://www.reactome.org/biopax/63/48887#PublicationXref919> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:17113861" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref920
+<http://www.reactome.org/biopax/63/48887#PublicationXref920> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:15560372" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref921
+<http://www.reactome.org/biopax/63/48887#PublicationXref921> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:15486459" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref922
+<http://www.reactome.org/biopax/63/48887#PublicationXref922> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:11283017" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref923
+<http://www.reactome.org/biopax/63/48887#PublicationXref923> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:11821425" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref924
+<http://www.reactome.org/biopax/63/48887#PublicationXref924> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:9988682" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref926
+<http://www.reactome.org/biopax/63/48887#PublicationXref926> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:9435216" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref929
+<http://www.reactome.org/biopax/63/48887#PublicationXref929> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:17988798" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref943
+<http://www.reactome.org/biopax/63/48887#PublicationXref943> rdf:type owl:NamedIndividual ,
+                                                                      <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                             <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                             <http://purl.org/dc/elements/1.1/source> "PMID:9673446" ;
+                                                             <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495425
 <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495425> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16264> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 1530 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GlcNAc" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495426
 <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495426> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16264> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 2780 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GlcNAc" .
 
 
@@ -6391,6 +7235,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495427> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16264> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694671> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GlcNAc" .
 
 
@@ -6398,6 +7244,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495449> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16264> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694607> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GlcNAc" .
 
 
@@ -6405,6 +7253,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495450> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16264> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694585> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 3380 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GlcNAc" .
 
 
@@ -6412,18 +7262,24 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule309-1394495452> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16264> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12-1362694583> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GlcNAc" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495422
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495422> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 3080 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495423
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495423> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 2430 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6431,18 +7287,24 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495424> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207863> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 2130 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495425
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495425> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 1530 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495426
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495426> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 2780 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6450,6 +7312,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495427> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207866> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6457,6 +7321,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495449> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207930> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 980 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6464,6 +7330,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495450> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207952> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 3380 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6471,6 +7339,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495452> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207954> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6478,6 +7348,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495453> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207955> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6485,6 +7357,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule311-1394495454> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17659> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121606207956> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 3630 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "UDP" .
 
 
@@ -6492,6 +7366,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule321-1394495451> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17980> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121312804946> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 1830 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "PAPS" .
 
 
@@ -6499,12 +7375,16 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule322-1394495451> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_17985> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121441887665> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 1830 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> 410 ;
                                                                       rdfs:label "PAP" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule325-1394495422
 <http://www.reactome.org/biopax/63/48887#SmallMolecule325-1394495422> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_18307> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 3080 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-Gal" .
 
 
@@ -6512,6 +7392,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule325-1394495424> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_18307> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121829135732> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 2130 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-Gal" .
 
 
@@ -6519,12 +7401,16 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule325-1394495453> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_18307> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary121829135824> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-Gal" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#SmallMolecule330-1394495423
 <http://www.reactome.org/biopax/63/48887#SmallMolecule330-1394495423> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16650> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 2480 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GalNAc" .
 
 
@@ -6532,6 +7418,8 @@
 <http://www.reactome.org/biopax/63/48887#SmallMolecule330-1394495454> rdf:type owl:NamedIndividual ,
                                                                                <http://purl.obolibrary.org/obo/CHEBI_16650> ;
                                                                       <http://purl.obolibrary.org/obo/RO_0001025> <http://www.reactome.org/biopax/63/48887#CellularLocationVocabulary12890319223> ;
+                                                                      <http://geneontology.org/lego/hint/layout/x> 3630 ;
+                                                                      <http://geneontology.org/lego/hint/layout/y> -90 ;
                                                                       rdfs:label "UDP-GalNAc" .
 
 
@@ -6539,10 +7427,10 @@
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/1041215906> <http://geneontology.org/lego/modelstate> "development" ;
-                                           <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
-                                           <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
-                                           <http://purl.org/dc/elements/1.1/title> "Reactome:O-linked glycosylation of mucins" .
+<http://model.geneontology.org/782607956> <http://geneontology.org/lego/modelstate> "development" ;
+                                          <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-913709" ;
+                                          <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                          <http://purl.org/dc/elements/1.1/title> "Reactome:O-linked glycosylation of mucins" .
 
 
 <http://purl.obolibrary.org/obo/GO_0003674> rdfs:label "Molecular Function" .

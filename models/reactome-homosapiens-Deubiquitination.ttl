@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/-1023384154#> .
+@prefix : <http://model.geneontology.org/866778712#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/-1023384154> .
+@base <http://model.geneontology.org/866778712> .
 
-<http://model.geneontology.org/-1023384154> rdf:type owl:Ontology .
+<http://model.geneontology.org/866778712> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -51,6 +71,10 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0008150
 <http://purl.obolibrary.org/obo/GO_0008150> rdf:type owl:Class ;
                                             rdfs:label "Biological Process" .
@@ -59,6 +83,24 @@
 ###  http://purl.obolibrary.org/obo/GO_0016579
 <http://purl.obolibrary.org/obo/GO_0016579> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0016579> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0032991
@@ -70,6 +112,11 @@
 ###  http://purl.obolibrary.org/obo/GO_0043687
 <http://purl.obolibrary.org/obo/GO_0043687> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -84,55 +131,540 @@
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway119
 <http://www.reactome.org/biopax/63/48887#Pathway119> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0016579> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0016579> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway68> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway120> ,
                                                                                                   <http://www.reactome.org/biopax/63/48887#Pathway121> ,
                                                                                                   <http://www.reactome.org/biopax/63/48887#Pathway122> ,
                                                                                                   <http://www.reactome.org/biopax/63/48887#Pathway123> ,
                                                                                                   <http://www.reactome.org/biopax/63/48887#Pathway124> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jupe, Steve, 2015-04-16" ,
+                                                                                                   "Edited: Jupe, Steve, 2016-05-05" ,
+                                                                                                   "Reviewed: Meldal, Birgit, 2016-05-16" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Ubiquitination, the modification of proteins by the covalent attachment of ubiquitin (Ub), is a key regulatory mechanism for many many cellular processes, including protein degradation by the 26S proteasome. Ub conjugates linked via lysine 48 (K48) target substrates to the proteasome, whereas those linked via any of the six other Ub lysines can alter the function of the modified protein without leading to degradation. Deubiquitination, the reversal of this modification, regulates the function of ubiquitin-conjugated proteins. Deubiquitinating enzymes (DUBs) catalyze the removal of Ub and regulate Ub-mediated pathways.<br><br>Given that Ub is covalently-linked to proteins destined to be degraded, it is a surprisingly long-lived protein in vivo (Haas & Bright 1987). This is due to the removal of Ub from its conjugates by DUBs prior to proteolysis. This may represent a quality control mechanism that prevents the degradation of proteins that were inappropriately tagged for degradation (Lam et al. 1997). DUBs are responsible for processing inactive Ub precursors and for keeping the 26S proteasome free of unanchored Ub chains that compete for Ub-binding sites. <br><br>DUBs can be grouped into five families based on their conserved catalytic domains (Amerik & Hochstrasser 2004). Four of these families are thiol proteases and comprise the bulk of DUBs, while the fifth family is a small group of Ub specific metalloproteases. <br><br>Thiol protease DUBs contain a Cys-His-Asp/Asn catalytic triad in which the Asp/Asn functions to polarize and orient the His, while the His serves as a general acid/base by both priming the catalytic Cys for nucleophilic attack on the (iso)peptide carbonyl carbon and by donating a proton to the lysine epsilon-amino leaving group. The nucleophilic attack of the catalytic Cys on the carbonyl carbon produces a negatively charged transition state that is stabilized by an oxyanion hole composed of hydrogen bond donors. A Cys-carbonyl acyl intermediate ensues and is then hydrolyzed by nucleophilic attack of a water molecule to liberate a protein C-terminal carboxylate and regenerate the enzyme. Ub binding often causes structural rearrangements necessary for catalysis. Many DUBs are inactivated by oxidation of the catalytic cysteine to sulphenic acid (single bond SOH) (Cotto-Rios et al. 2012, Lee et al. 2013). This can be reversed by reduction with DTT or glutathione. The sulphenic acid can be irreversibly oxidized to sulphinic acid (single bond SO2H) or sulphonic acid (single bond SO3H). <br> <br>Thiol proteases are reversibly inhibited by Ub C-terminal aldehyde, forming a thio-hemiacetal between the aldehyde group and the active site thiol." ;
                                                      rdfs:label "Deubiquitination" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway119> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0016579> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway119> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway68> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway119> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway120> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway119> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway121> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway119> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway122> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway119> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway123> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway119> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway124> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref1120> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1150> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1151> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1286> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1308> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1309> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1310> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1311> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1312> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1313> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1314> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref1315>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway120
-<http://www.reactome.org/biopax/63/48887#Pathway120> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway120> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  330 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  760 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jupe, Steve, 2015-04-16" ,
+                                                                                                   "Edited: Jupe, Steve, 2016-05-05" ,
+                                                                                                   "Reviewed: Meldal, Birgit, 2016-05-16" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "DUBs of the Ub C-terminal Hydrolase (UCH) family are thiol proteases that have an N-terminal catalytic domain sometimes followed by C-terminal extensions that mediate protein-protein interactions. Humans have four UCH DUBs (UCH-L1, UCH-L3, UCH37/UCH-L5, and BAP1) that can be divided into the smaller UCH DUBs (UCH-L1 and UCH-L3), which cleave small leaving groups from the C-terminus of ubiquitin (Larsen et al. 1998), and the larger UCH DUBs (UCH37 and BAP1), which can disassemble poly-Ub chains (Misaghi et al. 2009, Lam et al. 1997)." ;
                                                      rdfs:label "UCH proteinases" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway121
-<http://www.reactome.org/biopax/63/48887#Pathway121> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway121> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  630 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 1060 ,
+                                                                                                  160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jupe, Steve, 2015-04-16" ,
+                                                                                                   "Edited: Jupe, Steve, 2016-05-05" ,
+                                                                                                   "Reviewed: Meldal, Birgit, 2016-05-16" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Ub-specific processing proteases (USPs) are the largest of the DUB families with more than 50 members in humans. The USP catalytic domain varies considerably in size and consists of six conserved motifs with N- or C-terminal extensions and insertions occurring between the conserved motifs (Ye et al. 2009). Two highly conserved regions comprise the catalytic triad, the Cys-box (Cys) and His-box (His and Asp/Asn) (Nijman et al. 2005, Ye et al. 2009, Reyes-Turcu & Wilkinson 2009). They recognize their substrates by interactions of the variable regions with the substrate protein directly, or via scaffolds or adapters in multiprotein complexes." ;
                                                      rdfs:label "Ub-specific processing proteases" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway122
-<http://www.reactome.org/biopax/63/48887#Pathway122> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway122> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  930 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 1360 ,
+                                                                                                  160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jupe, Steve, 2015-04-16" ,
+                                                                                                   "Edited: Jupe, Steve, 2016-05-05" ,
+                                                                                                   "Reviewed: Meldal, Birgit, 2016-05-16" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Humans have 16 Overian tumour domain (OTU) family DUBs that can be evolutionally divided into three classes, the OTUs, the Otubains (OTUBs), and the A20-like OTUs (Komander et al. 2009). <br> <br>OTU family DUBs can be highly selective in the type of ubiquitin crosslinks they cleave. OTUB1 is specific for K48-linked chains, whereas OTUB2 can cleave K11, K63 and K48-linked poly-Ub (Wang et al. 2009, Edelmann et al. 2009, Mevissen et al. 2013). A20 prefers K48-linked chains, Cezanne is specific for K11-linked chains, and TRABID acts on both K29, K33 and K63-linked poly-Ub (Licchesi et al. 2011, Komander & Barford 2008, Bremm et al. 2010, Mevissen et al. 2013). The active site of the OTU domain contains an unusual loop not seen in other thiol-DUBs and can lack an obvious catalytic Asp/Asn (Komander & Barford 2009, Messick et al. 2008, Lin et al. 2008). A20 and OTUB1 have an unusual mode of activity, binding directly to E2 enzymes (Nakada et al. 2010, Wertz et al. 2004)." ;
                                                      rdfs:label "Ovarian tumor domain proteases" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway123
-<http://www.reactome.org/biopax/63/48887#Pathway123> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway123> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 1230 ,
+                                                                                                  30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  1660 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jupe, Steve, 2015-04-16" ,
+                                                                                                   "Edited: Jupe, Steve, 2016-05-05" ,
+                                                                                                   "Reviewed: Meldal, Birgit, 2016-05-16" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "The Josephin domain is present in four human DUBs: Ataxin-3 (ATXN3), ATXN3L, Josephin-1 (JOSD1) and JOSD2. All have been shown to possess DUB activity (Tzveltkov & Breuer 2007, Weeks et al. 2011). Josephin domain DUBs may specialize in distinguishing between polyubiquitin chains of different lengths (Eletr & Wilkinson 2014)." ;
                                                      rdfs:label "Josephin domain DUBs" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway124
-<http://www.reactome.org/biopax/63/48887#Pathway124> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway124> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 1530 ,
+                                                                                                  30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  1960 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Jupe, Steve, 2015-04-16" ,
+                                                                                                   "Edited: Jupe, Steve, 2016-05-05" ,
+                                                                                                   "Reviewed: Meldal, Birgit, 2016-05-16" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "The JAB1/MPN +/MOV34 (JAMM) domain metalloproteases cleave the isopeptide bond at or near the the attachment point of polyubiquitin and substrate. PSMD14 (RPN11), STAMBP (AMSH), STAMBPL1 (AMSH-LP), and BRCC3 (BRCC36) are highly specific for the K63 poly-Ub linkage, which may be a general characteristic (Eletr & Wilkinson 2014). Two multisubunit complexes represented elsewhere in Reactome contain JAMM DUBs. The proteasome 19S lid complex includes PSMD14, an endopeptidase that cleaves poly-Ub chains from substrates as they are degraded by the proteasome (Verma et al. 2002). The COP9-Signalosome contains COPS5 (CSN5), which deconjugates the Ub-like modifier Nedd8, modulating the activity of the SCF E3 ligase (Cope et al. 2002). <br><br>JAMM DUB catalysis requires nucleophilic attack on the carbonyl carbon of the isopeptide bond by an activated water molecule bound to Zn2+ and a conserved glutamate. A negatively-charged tetrahedral transition state ensues, and a nearby conserved Ser/Thr in the JAMM domains stabilizes the oxyanion. The tetrahedral intermediate then collapses and the Glu serves as a general base donating a proton to the leaving Lys side chain (Ambroggio et al. 2004)." ;
                                                      rdfs:label "Metalloprotease DUBs" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway68
 <http://www.reactome.org/biopax/63/48887#Pathway68> rdf:type owl:NamedIndividual ,
-                                                             <http://purl.obolibrary.org/obo/GO_0043687> ;
+                                                             <http://purl.obolibrary.org/obo/GO_0043687> ,
+                                                             <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                    <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                    <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                    <http://purl.org/dc/elements/1.1/contributor> "Authored: D'Eustachio, P, 2005-04-18 15:58:56" ,
+                                                                                                  "Edited: D'Eustachio, P, 0000-00-00 00:00:00" ,
+                                                                                                  "Reviewed: Orlean, P, Stafford, DW, 0000-00-00 00:00:00" ,
+                                                                                                  "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                    <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                    <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                    rdfs:comment "After translation, many newly formed proteins undergo further covalent modifications that alter their functional properties. Modifications associated with protein localization include the attachment of oligosaccharide moieties to membrane-bound and secreted proteins (<b>N-linked</b> and <b>O-linked glycosylation</b>), the attachment of lipid (<b>RAB geranylgeranylation</b>) or glycolipid moieties (<b>GPI-anchored proteins</b>) that anchor proteins to cellular membranes, and the vitamin K-dependent attachment of carboxyl groups to glutamate residues. Modifications associated with functions of specific proteins include <b>gamma carboxylation</b> of clotting factors, <b>hypusine formation</b> on eukaryotic translation initiation factor 5A, conversion of a cysteine residue to formylglycine (<b>arylsulfatase activation</b>), methylation of lysine and arginine residues on non-histone proteins (<b>protein methylation</b>), <b>protein phosphorylation</b> by secretory pathway kinases, and <b>carboxyterminal modifications of tubulin</b> involving the addition of polyglutamate chains.<p><b>Protein ubiquitination</b> and <b>deubiquitination</b> play a major role in regulating protein stability and, together with <b>SUMOylation</b> and <b>neddylation</b>, can modulate protein function as well." ;
                                                     rdfs:label "Post-translational protein modification" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1120
+<http://www.reactome.org/biopax/63/48887#PublicationXref1120> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:9034192" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1131
+<http://www.reactome.org/biopax/63/48887#PublicationXref1131> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:19188440" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1144
+<http://www.reactome.org/biopax/63/48887#PublicationXref1144> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:9521656" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1150
+<http://www.reactome.org/biopax/63/48887#PublicationXref1150> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:19243136" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1151
+<http://www.reactome.org/biopax/63/48887#PublicationXref1151> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:16325574" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1234
+<http://www.reactome.org/biopax/63/48887#PublicationXref1234> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:19734957" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1244
+<http://www.reactome.org/biopax/63/48887#PublicationXref1244> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15258597" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1254
+<http://www.reactome.org/biopax/63/48887#PublicationXref1254> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:23827681" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1259
+<http://www.reactome.org/biopax/63/48887#PublicationXref1259> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:17961127" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1260
+<http://www.reactome.org/biopax/63/48887#PublicationXref1260> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:18164316" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1261
+<http://www.reactome.org/biopax/63/48887#PublicationXref1261> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:20725033" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1262
+<http://www.reactome.org/biopax/63/48887#PublicationXref1262> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:19211026" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1263
+<http://www.reactome.org/biopax/63/48887#PublicationXref1263> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:19626045" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1264
+<http://www.reactome.org/biopax/63/48887#PublicationXref1264> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:18954305" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1265
+<http://www.reactome.org/biopax/63/48887#PublicationXref1265> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:20622874" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1266
+<http://www.reactome.org/biopax/63/48887#PublicationXref1266> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:18270205" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1267
+<http://www.reactome.org/biopax/63/48887#PublicationXref1267> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:22157957" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1269
+<http://www.reactome.org/biopax/63/48887#PublicationXref1269> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:17696782" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1286
+<http://www.reactome.org/biopax/63/48887#PublicationXref1286> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:23845989" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1287
+<http://www.reactome.org/biopax/63/48887#PublicationXref1287> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:21118805" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1290
+<http://www.reactome.org/biopax/63/48887#PublicationXref1290> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:12183636" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1306
+<http://www.reactome.org/biopax/63/48887#PublicationXref1306> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:12183637" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1307
+<http://www.reactome.org/biopax/63/48887#PublicationXref1307> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:14737182" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1308
+<http://www.reactome.org/biopax/63/48887#PublicationXref1308> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:23463011" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1309
+<http://www.reactome.org/biopax/63/48887#PublicationXref1309> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:22201797" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1310
+<http://www.reactome.org/biopax/63/48887#PublicationXref1310> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:23219552" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1311
+<http://www.reactome.org/biopax/63/48887#PublicationXref1311> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:20074029" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1312
+<http://www.reactome.org/biopax/63/48887#PublicationXref1312> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15571815" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1313
+<http://www.reactome.org/biopax/63/48887#PublicationXref1313> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:3025210" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1314
+<http://www.reactome.org/biopax/63/48887#PublicationXref1314> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:12944365" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref1315
+<http://www.reactome.org/biopax/63/48887#PublicationXref1315> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:20418328" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/-1023384154> <http://geneontology.org/lego/modelstate> "development" ;
-                                            <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
-                                            <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
-                                            <http://purl.org/dc/elements/1.1/title> "Reactome:Deubiquitination" .
+<http://model.geneontology.org/866778712> <http://geneontology.org/lego/modelstate> "development" ;
+                                          <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5688426" ;
+                                          <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                          <http://purl.org/dc/elements/1.1/title> "Reactome:Deubiquitination" .
 
 
 <http://purl.obolibrary.org/obo/BFO_0000066> rdfs:label "occurs in" .

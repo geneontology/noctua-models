@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/1207641106#> .
+@prefix : <http://model.geneontology.org/1130998816#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/1207641106> .
+@base <http://model.geneontology.org/1130998816> .
 
-<http://model.geneontology.org/1207641106> rdf:type owl:Ontology .
+<http://model.geneontology.org/1130998816> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -51,6 +71,10 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0008150
 <http://purl.obolibrary.org/obo/GO_0008150> rdf:type owl:Class ;
                                             rdfs:label "Biological Process" .
@@ -60,11 +84,27 @@
 <http://purl.obolibrary.org/obo/GO_0019221> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0019221> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref8141> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8171> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8211> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8212> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8213>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0032991
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -79,29 +119,162 @@
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway517
 <http://www.reactome.org/biopax/63/48887#Pathway517> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0019221> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0019221> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Garapati, P V, 2010-07-07" ,
+                                                                                                   "Edited: Garapati, P V, 2010-07-07" ,
+                                                                                                   "Reviewed: Abdul-Sater, AA, Schindler, C, 2010-08-17" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Interferons (IFNs) are cytokines that play a central role in initiating immune responses, especially antiviral and antitumor effects. There are three types of IFNs:Type I (IFN-alpha, -beta and others, such as omega, epsilon, and kappa), Type II (IFN-gamma) and Type III (IFN-lamda). In this module we are mainly focusing on type I IFNs alpha and beta and type II IFN-gamma. Both type I and type II IFNs exert their actions through cognate receptor complexes, IFNAR and IFNGR respectively, present on cell surface membranes. Type I IFNs are broadly expressed heterodimeric receptors composed of the IFNAR1 and IFNAR2 subunits, while the type II IFN receptor consists of IFNGR1 and IFNGR2. Type III interferon lambda has three members: lamda1 (IL-29), lambda2 (IL-28A), and lambda3 (IL-28B) respectively. IFN-lambda signaling is initiated through unique heterodimeric receptor composed of IFN-LR1/IF-28Ralpha and IL10R2 chains. <br>Type I IFNs typically recruit JAK1 and TYK2 proteins to transduce their signals to STAT1 and 2; in combination with IRF9 (IFN-regulatory factor 9), these proteins form the heterotrimeric complex ISGF3. In nucleus ISGF3 binds to IFN-stimulated response elements (ISRE) to promote gene induction. <br>Type II IFNs in turn rely upon the activation of JAKs 1 and 2 and STAT1. Once activated, STAT1 dimerizes to form the transcriptional regulator GAF (IFNG activated factor) and this binds to the IFNG activated sequence (GAS) elements and initiate the transcription of IFNG-responsive genes. <br>Like type I IFNs, IFN-lambda recruits TYK2 and JAK1 kinases and then promote the phosphorylation of STAT1/2, and induce the ISRE3 complex formation." ;
                                                      rdfs:label "Interferon Signaling" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway517> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0019221> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref8141> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8171> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8211> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8212> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref8213>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway522
-<http://www.reactome.org/biopax/63/48887#Pathway522> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway522> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway517> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway523> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Garapati, P V, 2011-01-18" ,
+                                                                                                   "Edited: Garapati, P V, 2011-01-18" ,
+                                                                                                   "Reviewed: Zhang, DE, 2011-02-10" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "The ISG proteins generated by IFN pathways plays key roles in the induction of innate and adaptive immune responses." ;
                                                      rdfs:label "Antiviral mechanism by IFN-stimulated genes" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway523
-<http://www.reactome.org/biopax/63/48887#Pathway523> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway523> rdf:type owl:NamedIndividual ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  330 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  760 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Garapati, P V, 2011-01-18" ,
+                                                                                                   "Edited: Garapati, P V, 2011-01-18" ,
+                                                                                                   "Reviewed: Zhang, DE, 2011-02-10" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Interferon-stimulated gene 15 (ISG15) is a member of the ubiquitin-like (Ubl) family. It is strongly induced upon exposure to type I Interferons (IFNs), viruses, bacterial LPS, and other stresses. Once released the mature ISG15 conjugates with an array of target proteins, a process termed ISGylation. ISGylation utilizes a mechanism similar to ubiquitination, requiring a three-step enzymatic cascade. UBE1L is the ISG15 E1 activating enzyme which specifically activates ISG15 at the expense of ATP. ISG15 is then transfered from E1 to the E2 conjugating enzyme UBCH8 and then to the target protein with the aid of an ISG15 E3 ligase, such as HERC5 and EFP. Hundreds of target proteins for ISGylation have been identified. Several proteins that are part of antiviral signaling pathways, such as RIG-I, MDA5, Mx1, PKR, filamin B, STAT1, IRF3 and JAK1, have been identified as targets for ISGylation. ISG15 also conjugates some viral proteins, inhibiting viral budding and release. ISGylation appears to act either by disrupting the activity of a target protein and/or by altering its localization within the cell." ;
                                                      rdfs:label "ISG15 antiviral mechanism" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref7055
+<http://www.reactome.org/biopax/63/48887#PublicationXref7055> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:20153823" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8112
+<http://www.reactome.org/biopax/63/48887#PublicationXref8112> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:16009940" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8141
+<http://www.reactome.org/biopax/63/48887#PublicationXref8141> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:14525967" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8171
+<http://www.reactome.org/biopax/63/48887#PublicationXref8171> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:18929502" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8188
+<http://www.reactome.org/biopax/63/48887#PublicationXref8188> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:20946978" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8190
+<http://www.reactome.org/biopax/63/48887#PublicationXref8190> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:12582176" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8210
+<http://www.reactome.org/biopax/63/48887#PublicationXref8210> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15970528" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8211
+<http://www.reactome.org/biopax/63/48887#PublicationXref8211> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15607020" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8212
+<http://www.reactome.org/biopax/63/48887#PublicationXref8212> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:19059436" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref8213
+<http://www.reactome.org/biopax/63/48887#PublicationXref8213> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15864272" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/1207641106> <http://geneontology.org/lego/modelstate> "development" ;
+<http://model.geneontology.org/1130998816> <http://geneontology.org/lego/modelstate> "development" ;
                                            <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-1169410" ;
-                                           <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
+                                           <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
                                            <http://purl.org/dc/elements/1.1/title> "Reactome:Antiviral mechanism by IFN-stimulated genes" .
 
 
