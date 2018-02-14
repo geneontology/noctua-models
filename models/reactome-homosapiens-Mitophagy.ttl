@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/-267871932#> .
+@prefix : <http://model.geneontology.org/314016978#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/-267871932> .
+@base <http://model.geneontology.org/314016978> .
 
-<http://model.geneontology.org/-267871932> rdf:type owl:Ontology .
+<http://model.geneontology.org/314016978> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -46,9 +66,20 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0000423
 <http://purl.obolibrary.org/obo/GO_0000423> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0000423> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13088>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0008150
@@ -60,11 +91,36 @@
 <http://purl.obolibrary.org/obo/GO_0016236> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0016236> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13088>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0016236> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13090> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13091> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13092> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13093> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13094> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13095> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13096>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0032991
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -79,32 +135,179 @@
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway917
 <http://www.reactome.org/biopax/63/48887#Pathway917> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0000423> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0000423> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway918> ,
                                                                                                   <http://www.reactome.org/biopax/63/48887#Pathway919> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Gillespie, ME, 2013-11-20" ,
+                                                                                                   "Edited: Gillespie, ME, 2013-11-20" ,
+                                                                                                   "Reviewed: Chauss, Daniel, Kantorow, Marc, 2015-09-01" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Mitophagy is a specific form of autophagy where mitochondria are specifically targeted for degradation by autophagolysosomes.. In mammals there are a number of known mechanisms of mitophagy. One insures maternal inheritance of mitochondrial DNA through the elimination of sperm derived mitochondria. A second is elimination of functional mitochondria during erythrocyte maturation and eye lens maturation. It is established that the outer mitochondrial membrane receptor Nix (or Bnip3l) and autophagosome associated protein LC3 are important for mitochondrial degradation in erythrocytes. A third mechanism is driven by the Pink1 and Parkin proteins. Parkin is recruited to the mitochondria when the mitochondrial membrane potential is reduced due to uncoupling, thereby initiating mitophagy." ;
                                                      rdfs:label "Mitophagy" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway917> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0000423> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13088>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway917> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway918> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13088>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway917> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway919> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13088>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway918
 <http://www.reactome.org/biopax/63/48887#Pathway918> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0016236> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0016236> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  330 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  460 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Gillespie, ME, 2013-11-20" ,
+                                                                                                   "Edited: Gillespie, ME, 2013-11-20" ,
+                                                                                                   "Reviewed: Chauss, Daniel, Kantorow, Marc, 2015-09-01" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "This is the process of selective removal of damaged mitochondria by autophagosomes and subsequent catabolism by lysosomes. In healthy mitochondria, PINK1 is imported to the inner mitochondrial membrane, presumably through the TOM/TIM complex. The TIM complex associated protease, mitochondrial MPP, cleaves PINK1 mitochondrial targeting sequence (MTS). PINK1 may be cleaved by the inner membrane presenilin associated rhomboid like protease (PARL) and ultimately proteolytically degraded. Loss of membrane potential in damaged mitochondria prevents the import of the PTEN induced putative kinase 1 (PINK1) which accumulates in the defective mitochondria triggering the recruitment of the E3 ubiquitin protein ligase (Parkin). Once on the mitochondria, Parkin promotes the ubiquitination of mitochondrial substrates embedded in the OMM such as the mitofusin Mitochondrial Assembly Regulatory Factor (MARF), mitofusin 1 and 2 (Mfn1, 2) and the Voltage Dependent Anion Channel 1 (VDAC1). After the ubiquitination events, p62 is recruited to mitochondria, binding the Parkin ubiquitinated substrates, linking the ubiquitinated substrates to the Microtubule associated protein Autophagy marker Light Chain 3 (LC3). Targeting the entire mitochondria for autophagic degradation. The recruitment of LC3 complexes with the autophagosome membrane and the AuTophaGy proteins 5 12 (Atg5 Atg12) complex. The mitochondria is engulfed after the isolation membrane grows to a sufficient size to engulf the mitochondria. Once autophagic vesicle formation is complete, vesicle fusion with lysosomes occurs to form autophagolysosomes in which the lysosomal hydrolases (cathepsins and lipases) degrade the intra autophagosomal content. Cathepsin also degrades LC3 on the intra autophagosomal surface of the autophagic vesicle." ;
                                                      rdfs:label "Pink/Parkin Mediated Mitophagy" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway918> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0016236> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13088>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway919
 <http://www.reactome.org/biopax/63/48887#Pathway919> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0016236> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0016236> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                  630 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                  760 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Gillespie, ME, 2013-11-20" ,
+                                                                                                   "Edited: Gillespie, ME, 2013-11-20" ,
+                                                                                                   "Reviewed: Feng, Du, 2017-01-26" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "Mitochondrial autophagy in mammalian cells was first observed in glucagon-stimulated hepatocytes. The mechanisms of mitophagy in mammalian cells remain unclear. Oxidative stress and mPTP are involved in the initiation of mitophagy. Receptor mediated mitophagy links both cellular differentiation signals and markers of mitochondrial function to LC3 and Atg32, scaffold proteins important for cargo selection and autophagosome formation. These scaffold proteins recruit other autophagy proteins to form the autophagosomes; destroying and recycling mitochondria.<br>Mitophagy receptors have to meet at least three criteria: 1) it must be mitochondrially localized, 2) it must interact with LC3/ ATG8 in response to a certain stimulus, and 3) it must have a consensus sequence of W/F/YxxL/I known as the LIR motif. This tetrapeptide sequence is present in several Atg8 or LC3-binding partners that are important for selective autophagy.<br><br>FUNDC1-mediated mitophagy is inhibited by its phosphorylation at the Tyr 18 position in the LIR motif by Src kinase under normoxia conditions. Upon hypoxia stimulation, Src is inactivated and FUNDC1 at the Tyr 18 position is dephosphorylated by an unknown phosphatase, resulting in an increase of the interaction between FUNDC1 and LC3-II, leading to the selective incorporation and autophagic removal of the mitochondrion.<br><br>The outer mitochondrial membrane protein NIX/BNIP3L is involved in autophagic turnover of mitochondria in reticulocytes, a process essential for red blood cell maturation [43]. The mechanism through which NIX senses signals from red blood cell differentiation is unclear. Phosphorylation of serine residues 17 and 24 flanking the BNIP3 LIR promotes binding to specific LC3 family members LC3B and GATE-16 and increases lysosomal destruction of mitochondria." ;
                                                      rdfs:label "Receptor Mediated Mitophagy" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway919> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0016236> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref13090> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13091> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13092> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13093> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13094> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13095> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref13096>
+ ] .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13088
+<http://www.reactome.org/biopax/63/48887#PublicationXref13088> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:21179058" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13090
+<http://www.reactome.org/biopax/63/48887#PublicationXref13090> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:24671035" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13091
+<http://www.reactome.org/biopax/63/48887#PublicationXref13091> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:22267086" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13092
+<http://www.reactome.org/biopax/63/48887#PublicationXref13092> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:18623629" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13093
+<http://www.reactome.org/biopax/63/48887#PublicationXref13093> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:18454133" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13094
+<http://www.reactome.org/biopax/63/48887#PublicationXref13094> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:20010802" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13095
+<http://www.reactome.org/biopax/63/48887#PublicationXref13095> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:23603281" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref13096
+<http://www.reactome.org/biopax/63/48887#PublicationXref13096> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:25840011" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/-267871932> <http://geneontology.org/lego/modelstate> "development" ;
-                                           <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
-                                           <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
-                                           <http://purl.org/dc/elements/1.1/title> "Reactome:Mitophagy" .
+<http://model.geneontology.org/314016978> <http://geneontology.org/lego/modelstate> "development" ;
+                                          <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-5205647" ;
+                                          <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                          <http://purl.org/dc/elements/1.1/title> "Reactome:Mitophagy" .
 
 
 <http://purl.obolibrary.org/obo/BFO_0000050> rdfs:label "part of" .

@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/362590861#> .
+@prefix : <http://model.geneontology.org/839470491#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/362590861> .
+@base <http://model.geneontology.org/839470491> .
 
-<http://model.geneontology.org/362590861> rdf:type owl:Ontology .
+<http://model.geneontology.org/839470491> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -51,9 +71,22 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0006805
 <http://purl.obolibrary.org/obo/GO_0006805> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0006805> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref22410> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22449> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22551>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0008150
@@ -65,6 +98,11 @@
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -79,35 +117,169 @@
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1997
 <http://www.reactome.org/biopax/63/48887#Pathway1997> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0006805> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0006805> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Edited: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Reviewed: D'Eustachio, P, 2008-05-28 08:30:54" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Phase 1 of metabolism is concerned with <i><b>functionalization</b></i>, that is the introduction or exposure of functional groups on the chemical structure of a compound. This provides a 'handle' for phase 2 conjugating species with which to react with. Many xenobiotics are lipophilic and almost chemically inert (e.g. PAHs) so would not necessarily undergo a phase 2 reaction. Making them more chemically reactive would facilitate their excretion but also increases their chance of reacting with cellular macromolecules (e.g. proteins, DNA). There is a fine balance between producing a more reactive metabolite and conjugation reactions.<br>There are two groups of enzymes in phase 1 - oxidoreductases and hydrolases. Oxidoreductases introduce an oxygen atom into or remove electrons from their substrates. The major oxidoreductase enzyme system is called the P450 monooxygenases. Other systems include flavin-containing monooxygenases (FMO), cyclooxygenases (COX) and monoamine oxidases (MAO). Hydrolases hydrolyse esters, amides, epoxides and glucuronides." ;
                                                       rdfs:label "Phase I - Functionalization of compounds" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1997> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0006805> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref22410> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22449> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22551>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2010
-<http://www.reactome.org/biopax/63/48887#Pathway2010> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway2010> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway1997> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway2011> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway2012> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Edited: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Reviewed: D'Eustachio, P, 2008-05-28 08:30:54" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Human amine oxidases (AO) catalyze the oxidative deamination of biogenic amines (neurotransmitters such as serotonin, noradrenaline, the hormone adrenaline and polyamines such as the spermines) and xenobiotic amines (exogenous dietary tyramine and phenylethylamine). The basic reaction is the oxidative cleavage of the alpha-H to form an imine product with the concomitant reduction of a FAD cofactor. The imine product then hydrolyses to an aldehyde and ammonia (or amine for secondary and tertiary amine substrates). Reduced FAD is reoxidized to form hydrogen peroxide to complete the catalytic cycle.<p>The reaction can be summarized as</p><p><b>RCH2NH2 + H2O + O2 = RCHO + NH3 + H2O2</b></p><p>The resultant hydrogen peroxide is the source of the most toxic free radical, the hydroxyl radical (.OH). This free radical is produced in the Fenton reaction with the use of ferrous (Fe2+) iron.</p>" ;
                                                       rdfs:label "Amine Oxidase reactions" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2010> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1997> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref22484> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22485> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22486>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2010> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway2011> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref22484> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22485> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22486>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2010> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway2012> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref22484> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22485> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref22486>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2011
-<http://www.reactome.org/biopax/63/48887#Pathway2011> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway2011> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   630 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 1060 ,
+                                                                                                   160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Edited: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Reviewed: D'Eustachio, P, 2008-05-28 08:30:54" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Human monoamine oxidases (MAOs) are flavin-containing enzymes that are present on the outer mitochondrial membrane and act on primary, secondary and tertiary amines. In contrast to the P450s which have a large number of isozymes, MAOs number only two isozymes, MAO-A and MAO-B. These gene products share over 70% sequence identity, are approximately 59KDa in size and have overlapping substrates (for example dopamine, tryamine and tryptamine) but each form also has distinct substrate specificities. MAO-A (primary type in fibroblasts) preferentially oxidises serotonin (5-Hydroxytryptamine) whereas MAO-B (primary type in platelets) prefers phenylethylamine. MAOs are of particular clinical interest because of the use of MAO inhibitors (MAOI) as antidepressants or in the treatment of neurodegenerative diseases Benedetti 2001, Beedham 1997)." ;
                                                       rdfs:label "Biogenic amines are oxidatively deaminated to aldehydes by MAOA and MAOB" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2012
-<http://www.reactome.org/biopax/63/48887#Pathway2012> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway2012> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   330 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   760 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Edited: Jassal, Bijay, 2008-05-19" ,
+                                                                                                    "Reviewed: D'Eustachio, P, 2008-05-28 08:30:54" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Polyamine oxidases (PAOs), like MAOs, are also FAD-dependant and form aldehydes and hydrogen peroxide. PAOs are approximately 60KDa in size, are monomers and are located in peroxisomes. They act on endogenous polyamines as well as some xenobiotics. The polyamines of the spermine and spermidine families are important physiologically as they mediate cell function and growth and also play a role in programmed cell death. The balance between biosynthesis, degradation and uptake of these polyamines is strictly controlled in cells and the PAO system is one of a set of enzymes that maintains this regulation (Tabor & Tabor 1984, Benedetti 2001)." ;
                                                       rdfs:label "PAOs oxidise polyamines to amines" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref22410
+<http://www.reactome.org/biopax/63/48887#PublicationXref22410> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:16584116" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref22449
+<http://www.reactome.org/biopax/63/48887#PublicationXref22449> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12369887" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref22484
+<http://www.reactome.org/biopax/63/48887#PublicationXref22484> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11468017" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref22485
+<http://www.reactome.org/biopax/63/48887#PublicationXref22485> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9443166" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref22486
+<http://www.reactome.org/biopax/63/48887#PublicationXref22486> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:6206782" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref22551
+<http://www.reactome.org/biopax/63/48887#PublicationXref22551> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-140179" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:17125408" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/362590861> <http://geneontology.org/lego/modelstate> "development" ;
+<http://model.geneontology.org/839470491> <http://geneontology.org/lego/modelstate> "development" ;
                                           <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-140179" ;
-                                          <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
+                                          <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
                                           <http://purl.org/dc/elements/1.1/title> "Reactome:Amine Oxidase reactions" .
 
 

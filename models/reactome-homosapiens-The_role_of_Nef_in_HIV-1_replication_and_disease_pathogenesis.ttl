@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/-807169214#> .
+@prefix : <http://model.geneontology.org/-820939824#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/-807169214> .
+@base <http://model.geneontology.org/-820939824> .
 
-<http://model.geneontology.org/-807169214> rdf:type owl:Ontology .
+<http://model.geneontology.org/-820939824> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -51,6 +71,10 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0008150
 <http://purl.obolibrary.org/obo/GO_0008150> rdf:type owl:Class ;
                                             rdfs:label "Biological Process" .
@@ -66,6 +90,40 @@
 <http://purl.obolibrary.org/obo/GO_0050690> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0050690> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18443> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18455> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18456>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0050690> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18457> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18458> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18463> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18465> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18466> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18471> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18473> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18474> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18475> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18476> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18477> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18478> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18479> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18480>
+ ] .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
+
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
 <http://www.biopax.org/release/biopax-level3.owl#Protein> rdf:type owl:Class ;
@@ -78,37 +136,372 @@
 #################################################################
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1623
-<http://www.reactome.org/biopax/63/48887#Pathway1623> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1623> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Reviewed: Benarous, R, Zhao, RY, Peterlin, BM, 2006-10-30 22:12:28" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Like all viruses, HIV-1 must co-opt the host cell macromolecular transport and processing machinery. HIV-1 Vpr and Rev proteins play key roles in this co-optation. Efficient HIV-1 replication likewise requires evasion of APOBEC3G-mediated mutagenesis of reverse transcripts, a process mediated by the viral Vif protein." ;
                                                       rdfs:label "Host Interactions of HIV factors" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1632
-<http://www.reactome.org/biopax/63/48887#Pathway1632> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway1632> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway1623> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway1633> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway1634> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Gillespie, ME, 2007-07-25 19:42:36" ,
+                                                                                                    "Reviewed: Skowronski, J, 2007-08-07 14:33:41" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "The HIV-1 Nef protein is a 27-kDa myristoylated protein that is abundantly produced during the early phase of viral replication cycle. It is highly conserved in all primate lentiviruses, suggesting that its function is essential for survival of these pathogens. The protein name \"Nef\" was derived from early reports of its negative effect on viral replication, thus 'negative factor' or Nef. Subsequently it has been demonstrated that Nef plays an important role in several steps of HIV replication. In addition, it appears to be a critical pathogenic factor, as Nef-deficient SIV and HIV are significantly less pathogenic than the wild-type viruses, whereas Nef-transgenic mice show many features characteristic to HIV disease.<br><br>The role of Nef in HIV-1 replication and disease pathogenesis is determined by at least four independent activities of this protein. Nef affects the cell surface expression of several cellular proteins, interferes with cellular signal transduction pathways, enhances virion infectivity and viral replication, and regulates cholesterol trafficking in HIV-infected cells." ;
                                                       rdfs:label "The role of Nef in HIV-1 replication and disease pathogenesis" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1632> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1623> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18412> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18481> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18482> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18483> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18484> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18485> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18486> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18487>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1632> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1633> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18412> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18481> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18482> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18483> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18484> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18485> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18486> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18487>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1632> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway1634> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18412> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18481> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18482> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18483> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18484> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18485> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18486> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18487>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1633
 <http://www.reactome.org/biopax/63/48887#Pathway1633> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0050690> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0050690> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   630 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 1060 ,
+                                                                                                   160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Gillespie, ME, 2007-07-25 19:42:36" ,
+                                                                                                    "Reviewed: Skowronski, J, 2007-08-07 14:33:41" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Nef interferes with cellular signal transduction pathways in a number of ways. Nef is associated with lipid rafts through its amino-terminal myristoylation and a proline-rich SH3-binding domain. These cholesterol-rich membrane microdomains appear to concentrate potent signaling mediators. Nef was found to complex with and activate serine/threonine protein kinase PAK-2, which may contribute to activation of infected cells. In vitro, HIV-infected T cells produce enhanced levels of interleukin-2 during activation. When expressed in macrophages, Nef intersects the CD40L signaling pathway inducing secretion of chemokines and other factors that attract resting T cells and promote their infection by HIV." ;
                                                       rdfs:label "Nef and signal transduction" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1633> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0050690> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18443> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18455> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18456>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway1634
 <http://www.reactome.org/biopax/63/48887#Pathway1634> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0050690> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0050690> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   330 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   760 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Gillespie, ME, 2007-07-25 19:42:36" ,
+                                                                                                    "Reviewed: Skowronski, J, 2007-08-07 14:33:41" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "The maximal virulence of HIV-1 requires Nef, a virally encoded peripheral membrane protein. Nef binds to the adaptor protein (AP) complexes of coated vesicles, inducing an expansion of the endosomal compartment and altering the surface expression of cellular proteins including CD4 and class I major histocompatibility complex.<br> Nef affects the cell surface expression of several cellular proteins. It down-regulates CD4, CD8, CD28, and major histocompatibility complex class I and class II proteins, but upregulates the invariant chain of MHC II (CD74). To modulate cell surface receptor expression, Nef utilizes several strategies, linked to distinct regions within the Nef protein.<br>Since all these receptors are essential for proper functions of the immune system, modulation of their surface expression by Nef has profound effects on anti-HIV immune responses. Down-regulation of MHC I protects HIV-infected cells from host CTL response, whereas down-modulation of CD28 and CD4 probably limits the adhesion of a Nef-expressing T cell to the antigen-presenting cell, thus promoting the movement of HIV-infected cells into circulation and the spread of the virus." ;
                                                       rdfs:label "Nef-mediates down modulation of cell surface receptors by recruiting them to clathrin adapters" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway1634> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0050690> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref18457> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18458> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18463> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18465> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18466> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18471> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18473> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18474> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18475> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18476> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18477> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18478> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18479> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref18480>
+ ] .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18412
+<http://www.reactome.org/biopax/63/48887#PublicationXref18412> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:16354571" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18443
+<http://www.reactome.org/biopax/63/48887#PublicationXref18443> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:10618429" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18455
+<http://www.reactome.org/biopax/63/48887#PublicationXref18455> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:8570619" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18456
+<http://www.reactome.org/biopax/63/48887#PublicationXref18456> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12853962" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18457
+<http://www.reactome.org/biopax/63/48887#PublicationXref18457> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11285224" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18458
+<http://www.reactome.org/biopax/63/48887#PublicationXref18458> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12486136" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18463
+<http://www.reactome.org/biopax/63/48887#PublicationXref18463> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9586638" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18465
+<http://www.reactome.org/biopax/63/48887#PublicationXref18465> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:8612235" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18466
+<http://www.reactome.org/biopax/63/48887#PublicationXref18466> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:2014052" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18471
+<http://www.reactome.org/biopax/63/48887#PublicationXref18471> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:16103193" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18473
+<http://www.reactome.org/biopax/63/48887#PublicationXref18473> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11208076" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18474
+<http://www.reactome.org/biopax/63/48887#PublicationXref18474> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12970439" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18475
+<http://www.reactome.org/biopax/63/48887#PublicationXref18475> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9564030" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18476
+<http://www.reactome.org/biopax/63/48887#PublicationXref18476> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9811606" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18477
+<http://www.reactome.org/biopax/63/48887#PublicationXref18477> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9736718" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18478
+<http://www.reactome.org/biopax/63/48887#PublicationXref18478> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9384576" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18479
+<http://www.reactome.org/biopax/63/48887#PublicationXref18479> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11463741" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18480
+<http://www.reactome.org/biopax/63/48887#PublicationXref18480> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9811611" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18481
+<http://www.reactome.org/biopax/63/48887#PublicationXref18481> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9790524" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18482
+<http://www.reactome.org/biopax/63/48887#PublicationXref18482> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9420207" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18483
+<http://www.reactome.org/biopax/63/48887#PublicationXref18483> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9365760" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18484
+<http://www.reactome.org/biopax/63/48887#PublicationXref18484> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:3262235" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18485
+<http://www.reactome.org/biopax/63/48887#PublicationXref18485> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:1470917" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18486
+<http://www.reactome.org/biopax/63/48887#PublicationXref18486> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:2531920" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref18487
+<http://www.reactome.org/biopax/63/48887#PublicationXref18487> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:12545074" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/-807169214> <http://geneontology.org/lego/modelstate> "development" ;
+<http://model.geneontology.org/-820939824> <http://geneontology.org/lego/modelstate> "development" ;
                                            <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-164952" ;
-                                           <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
+                                           <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
                                            <http://purl.org/dc/elements/1.1/title> "Reactome:The role of Nef in HIV-1 replication and disease pathogenesis" .
 
 

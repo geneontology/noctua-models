@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/94401115#> .
+@prefix : <http://model.geneontology.org/-164206835#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/94401115> .
+@base <http://model.geneontology.org/-164206835> .
 
-<http://model.geneontology.org/94401115> rdf:type owl:Ontology .
+<http://model.geneontology.org/-164206835> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -51,6 +71,10 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0006351
 <http://purl.obolibrary.org/obo/GO_0006351> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
@@ -59,6 +83,15 @@
 ###  http://purl.obolibrary.org/obo/GO_0006383
 <http://purl.obolibrary.org/obo/GO_0006383> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0006383> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24906> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24908>
+ ] .
 
 
 ###  http://purl.obolibrary.org/obo/GO_0006385
@@ -70,6 +103,13 @@
 <http://purl.obolibrary.org/obo/GO_0006386> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0006386> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24904>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0008150
 <http://purl.obolibrary.org/obo/GO_0008150> rdf:type owl:Class ;
@@ -80,6 +120,11 @@
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -94,51 +139,266 @@
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2069
 <http://www.reactome.org/biopax/63/48887#Pathway2069> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0006351> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0006351> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Comai, L, Conaway, JW, Conaway, RC, Gustafsson, CM, Hernandez, N, Hu, P, Larsson, N-G, Proudfoot, NJ, Reinberg, D, Timmers, HTM, 2003-09-11" ,
+                                                                                                    "Authored: Kornblihtt, AR, Proudfoot, NJ, Caudy, M, D'Eustachio, P, 2008-12-03 01:43:15" ,
+                                                                                                    "Edited: Joshi-Tope, G, 0000-00-00 00:00:00" ,
+                                                                                                    "Reviewed: Paule, M, Zhao, X, Willis, I, 0000-00-00 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Gene expression encompasses transcription and translation and the regulation of these processes. RNA Polymerase I Transcription produces the large preribosomal RNA transcript (45S pre-rRNA) that is processed to yield 18S rRNA, 28S rRNA, and 5.8S rRNA, accounting for about half the RNA in a cell. RNA Polymerase II transcription produces messenger RNAs (mRNA) as well as a subset of non-coding RNAs including many small nucleolar RNAs (snRNA) and microRNAs (miRNA). RNA Polymerase III Transcription produces transfer RNAs (tRNA), 5S RNA, 7SL RNA, and U6 snRNA. Transcription from mitochondrial promoters is performed by the mitochondrial RNA polymerase, POLRMT, to yield long transcripts from each DNA strand that are processed to yield 12S rRNA, 16S rRNA, tRNAs, and a few RNAs encoding components of the electron transport chain. Regulation of gene expression can be divided into epigenetic regulation, transcriptional regulation, and post-transcription regulation (comprising translational efficiency and RNA stability). Epigenetic regulation of gene expression is the result of heritable chemical modifications to DNA and DNA-binding proteins such as histones. Epigenetic changes result in altered chromatin complexes that influence transcription. Gene Silencing by RNA mostly occurs post-transcriptionally but can also affect transcription. Small RNAs originating from the genome (miRNAs) or from exogenous RNA (siRNAs) are processed and transferred to the RNA-induced silencing complex (RISC), which interacts with complementary RNA to cause cleavage, translational inhibition, or transcriptional inhibition." ;
                                                       rdfs:label "Gene expression (Transcription)" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2153
 <http://www.reactome.org/biopax/63/48887#Pathway2153> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0006383> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0006383> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway2069> ;
                                                       <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#Pathway2154> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway2155> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway2159> ,
                                                                                                    <http://www.reactome.org/biopax/63/48887#Pathway2160> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Hernandez, N, 2003-09-11 07:42:29" ,
+                                                                                                    "Edited: Joshi-Tope, G, 0000-00-00 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "RNA polymerase III is one of three types of nuclear RNA polymerases present in eucaryotic cells. About 10% of the total transcription in dividing cells can be attributed to its activity. It synthesizes an eclectic collection of catalytic or structural RNA molecules, some of which are involved in protein synthesis, pre-mRNA splicing, tRNA processing, and the control of RNA polymerase II elongation, whereas some others have still unknown functions. Like other RNA polymerases, RNA polymerase III cannot recognize its target promoters directly. Instead it is recruited to specific promoter sequences through the help of transcription factors. There are three basic types of RNA polymerase III promoters, called types 1, 2, and 3(Geiduschek and Kassavetis, 1992). Although in vivo, RNA polymerase III may be recruited to these promoters as part of a large complex (holo RNA polymerase III) containing the polymerase and its initiation factors (Wang et al., 1997), in vitro the reaction can be divided into several steps. First, the promoter elements are recognized by DNA binding factors, which then recruit a factor known as TFIIIB. TFIIIB itself then directly contacts RNA polymerase III. In human cells but not in <i>S. cerevisiae</i>, there are at least two versions of TFIIIB. One contains TBP, Bdp1, and Brf1 (Brf1-TFIIIB), and the other TBP, Bdp1, and Brf2 (Brf2-TFIIIB) (Schramm et al., 2000; Teichmann et al., 2000)." ;
                                                       rdfs:label "RNA Polymerase III Transcription" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2153> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0006383> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24906> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2153> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway2069> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24906> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2153> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway2154> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24906> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2153> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway2155> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24906> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2153> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway2159> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24906> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24908>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2153> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway2160> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24906> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref24908>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2154
-<http://www.reactome.org/biopax/63/48887#Pathway2154> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway2154> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   930 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 1360 ,
+                                                                                                   160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Geiduschek, E, 2004-03-29 17:50:49" ,
+                                                                                                    "Edited: Gillespie, ME, 0000-00-00 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Abortive initiation, the repetitive formation of short oligonucleotides, is a ubiquitous feature of transcriptional initiation. This Pathway contains events inferred from events in Saccharomyces cerevisiae." ;
                                                       rdfs:label "RNA Polymerase III Abortive And Retractive Initiation" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2155
-<http://www.reactome.org/biopax/63/48887#Pathway2155> rdf:type owl:NamedIndividual ;
+<http://www.reactome.org/biopax/63/48887#Pathway2155> rdf:type owl:NamedIndividual ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   630 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 1060 ,
+                                                                                                   160 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Hernandez, N, 2003-09-11 07:42:29" ,
+                                                                                                    "Edited: Joshi-Tope, G, 0000-00-00 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "There are three basic types of RNA polymerase III promoters. The three types of RNA polymerase III promoters are known as type 1, type 2, and type 3 promoters. Type 1 promoters are found in the 5S genes and consist of a gene-internal element called the internal control region (ICR), that is subdivided into A block, intermediate element, and C block (Bogenhagen, 1985; Sakonju et al., 1980). Type 2 promoters are found in tRNA genes, Adenovirus 2 VAI gene, and other genes (Galli et al., 1981; Sharp et al., 1981). These promoters consists of two gene-internal elements called the A and the B boxes. Type 3 promoters consist of a distal sequence element (DSE) that serves as an enhancer, a proximal sequence element (PSE), and a TATA box (Baer et al., 1989; Lobo and Hernandez, 1989). <p>Some promoters combine elements from type 2 and 3 promoters. For example, the S. cerevisiae U6 promoter, also shown in the figure, contains the TATA box typical of type 3 promoters and the A and B boxes typical of type 2 promoters. Moreover, in S. pombe, nearly all tRNA and 5S genes contain a TATA box in addition to gene-internal elements, and the TATA box is required for transcription." ;
                                                       rdfs:label "RNA Polymerase III Transcription Initiation" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2159
 <http://www.reactome.org/biopax/63/48887#Pathway2159> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0006385> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0006385> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 30 ,
+                                                                                                   330 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   760 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Kassavetis, GA, Geiduschek, EP, 2004-02-27 13:21:23" ,
+                                                                                                    "Edited: Gillespie, ME, 0000-00-00 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "Pol III initiation complexes open the promoter spontaneously similar to the mechanism employed in archaeal and bacterial transcription." ;
                                                       rdfs:label "RNA Polymerase III Chain Elongation" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway2160
 <http://www.reactome.org/biopax/63/48887#Pathway2160> rdf:type owl:NamedIndividual ,
-                                                               <http://purl.obolibrary.org/obo/GO_0006386> ;
+                                                               <http://purl.obolibrary.org/obo/GO_0006386> ,
+                                                               <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                      <http://geneontology.org/lego/hint/layout/x> 1230 ,
+                                                                                                   30 ;
+                                                      <http://geneontology.org/lego/hint/layout/y> 160 ,
+                                                                                                   1660 ;
+                                                      <http://purl.org/dc/elements/1.1/contributor> "Authored: Kassavetis, GA, Geiduschek, EP, 2004-02-27 13:21:23" ,
+                                                                                                    "Edited: Joshi-Tope, G, 0000-00-00 00:00:00" ,
+                                                                                                    "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                      <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                      rdfs:comment "At the end of the cycle, the elongation complex (EC) must be destabilized to release its transcript and DNA. Analogous to initiation, cis-signals and protein factors are required to mediate EC destabilization and release of the transcript from the grip of the RNA polymerase (RNAP). RNAP III achieves efficient termination despite the apparent simplicity of its cis-acting DNA terminator element, a stretch of five or more T residues on the non-template (NT) strand, which directs termination within this site without need for additional cis-elements or trans-acting factors." ;
                                                       rdfs:label "RNA Polymerase III Transcription Termination" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway2160> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0006386> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref24904>
+ ] .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24898
+<http://www.reactome.org/biopax/63/48887#PublicationXref24898> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:7357604" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24899
+<http://www.reactome.org/biopax/63/48887#PublicationXref24899> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:6947245" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24900
+<http://www.reactome.org/biopax/63/48887#PublicationXref24900> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:7357599" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24901
+<http://www.reactome.org/biopax/63/48887#PublicationXref24901> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:2752422" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24902
+<http://www.reactome.org/biopax/63/48887#PublicationXref24902> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:7312050" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24903
+<http://www.reactome.org/biopax/63/48887#PublicationXref24903> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:2308839" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24904
+<http://www.reactome.org/biopax/63/48887#PublicationXref24904> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:25959395" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24905
+<http://www.reactome.org/biopax/63/48887#PublicationXref24905> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11040218" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24906
+<http://www.reactome.org/biopax/63/48887#PublicationXref24906> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:9308965" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref24908
+<http://www.reactome.org/biopax/63/48887#PublicationXref24908> rdf:type owl:NamedIndividual ,
+                                                                        <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                               <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                                               <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                               <http://purl.org/dc/elements/1.1/source> "PMID:11121026" ;
+                                                               <http://purl.org/pav/providedBy> "https://reactome.org" .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/94401115> <http://geneontology.org/lego/modelstate> "development" ;
-                                         <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
-                                         <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
-                                         <http://purl.org/dc/elements/1.1/title> "Reactome:RNA Polymerase III Transcription" .
+<http://model.geneontology.org/-164206835> <http://geneontology.org/lego/modelstate> "development" ;
+                                           <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-74158" ;
+                                           <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                           <http://purl.org/dc/elements/1.1/title> "Reactome:RNA Polymerase III Transcription" .
 
 
 <http://purl.obolibrary.org/obo/BFO_0000066> rdfs:label "occurs in" .

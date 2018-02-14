@@ -1,19 +1,31 @@
-@prefix : <http://model.geneontology.org/1166007480#> .
+@prefix : <http://model.geneontology.org/1736994666#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://model.geneontology.org/1166007480> .
+@base <http://model.geneontology.org/1736994666> .
 
-<http://model.geneontology.org/1166007480> rdf:type owl:Ontology .
+<http://model.geneontology.org/1736994666> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://geneontology.org/lego/evidence
+<http://geneontology.org/lego/evidence> rdf:type owl:AnnotationProperty .
+
+
 ###  http://geneontology.org/lego/modelstate
 <http://geneontology.org/lego/modelstate> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/x
+<http://geneontology.org/lego/hint/layout/x> rdf:type owl:AnnotationProperty .
+
+
+###  http://geneontology.org/lego/hint/layout/y
+<http://geneontology.org/lego/hint/layout/y> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/contributor
@@ -24,8 +36,16 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/elements/1.1/title
 <http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/pav/providedBy
+<http://purl.org/pav/providedBy> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -508,6 +528,10 @@
                                              rdfs:label "Continuant" .
 
 
+###  http://purl.obolibrary.org/obo/ECO_0000313
+<http://purl.obolibrary.org/obo/ECO_0000313> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/GO_0004175
 <http://purl.obolibrary.org/obo/GO_0004175> rdf:type owl:Class .
 
@@ -530,11 +554,42 @@
 <http://purl.obolibrary.org/obo/GO_0031145> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/GO_0008150> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0031145> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref5289> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9907> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9918> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9921> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9922> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9923> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9924> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9925>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://purl.obolibrary.org/obo/GO_0031145> ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0008150> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
 
 ###  http://purl.obolibrary.org/obo/GO_0032991
 <http://purl.obolibrary.org/obo/GO_0032991> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                             rdfs:label "Macromolecular Complex" .
+
+
+###  http://www.biopax.org/release/biopax-level3.owl#Pathway
+<http://www.biopax.org/release/biopax-level3.owl#Pathway> rdf:type owl:Class ;
+                                                          rdfs:label "Pathway" .
 
 
 ###  http://www.biopax.org/release/biopax-level3.owl#Protein
@@ -555,25 +610,57 @@
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction4021
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4021> rdf:type owl:NamedIndividual ,
                                                                            <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                  <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway656> ;
                                                                   <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40212113973028> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Complex5074417781899> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein11972417781899> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Complex5075417781899> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002413> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+                                                                  <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                                  <http://geneontology.org/lego/hint/layout/y> 460 ;
                                                                   rdfs:label "Association of cell cycle proteins with the APC/C:Cdh1 complex" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4021> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9921>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4021> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000066> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40212113973028> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9921>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4021> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction40212113973028
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40212113973028> rdf:type owl:NamedIndividual ,
                                                                                      <http://purl.obolibrary.org/obo/GO_0005829> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40212113973028> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0005829> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9921>
+ ] .
+
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> rdf:type owl:NamedIndividual ,
                                                                            <http://purl.obolibrary.org/obo/GO_0004842> ,
                                                                            <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                  <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway656> ;
                                                                   <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40222113973028> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Complex5075417781900> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein160417781900> ;
@@ -581,48 +668,188 @@
                                                                   <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Complex5075417781900> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002413> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4025> ;
+                                                                  <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                                  <http://geneontology.org/lego/hint/layout/y> 460 ;
                                                                   rdfs:label "Ubiquitination of cell cycle proteins targeted by the APC/C:Cdh1complex" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Complex5075417781900> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002413> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4025> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0004842> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000066> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40222113973028> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction40222113973028
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40222113973028> rdf:type owl:NamedIndividual ,
                                                                                      <http://purl.obolibrary.org/obo/GO_0005829> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40222113973028> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0005829> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> rdf:type owl:NamedIndividual ,
                                                                            <http://purl.obolibrary.org/obo/GO_0004175> ,
                                                                            <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                  <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway656> ;
                                                                   <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40232113973028> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Complex5076417781901> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Complex5074417781901> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein160417781901> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Complex59417781901> ;
+                                                                  <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                                  <http://geneontology.org/lego/hint/layout/y> 460 ;
                                                                   rdfs:label "Degradation of multiubiquitinated cell cycle proteins" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0004175> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000066> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40232113973028> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Complex59417781901> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction40232113973028
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40232113973028> rdf:type owl:NamedIndividual ,
                                                                                      <http://purl.obolibrary.org/obo/GO_0005829> .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40232113973028> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0005829> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024> rdf:type owl:NamedIndividual ,
                                                                            <http://purl.obolibrary.org/obo/GO_0004175> ,
                                                                            <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
-                                                                  <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway656> ;
                                                                   <http://purl.obolibrary.org/obo/BFO_0000066> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40242113973028> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002233> <http://www.reactome.org/biopax/63/48887#Complex5077417781902> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002234> <http://www.reactome.org/biopax/63/48887#Complex5074417781902> ,
                                                                                                               <http://www.reactome.org/biopax/63/48887#Protein160417781902> ;
                                                                   <http://purl.obolibrary.org/obo/RO_0002333> <http://www.reactome.org/biopax/63/48887#Complex59417781902> ;
+                                                                  <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                                  <http://geneontology.org/lego/hint/layout/y> 460 ;
                                                                   rdfs:label "APC/C:Cdh1-mediated degradation of Skp2" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0004175> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9548> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9550>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://www.biopax.org/release/biopax-level3.owl#Reaction> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9548> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9550>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000066> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40242113973028> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9548> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9550>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002333> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Complex59417781902> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9548> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9550>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction40242113973028
 <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40242113973028> rdf:type owl:NamedIndividual ,
                                                                                      <http://purl.obolibrary.org/obo/GO_0005829> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#BiochemicalReaction40242113973028> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0005829> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9548> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9550>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#BiochemicalReaction4025
@@ -650,6 +877,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-1534736249> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-1534736249> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-1534736249> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 980 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "phospho-APC/C:Cdh1 complex" .
 
 
@@ -673,6 +902,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-1534735575> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-1534735575> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-1534735575> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                                rdfs:label "phospho-APC/C:Cdh1 complex" .
 
 
@@ -696,6 +927,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-1534735574> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-1534735574> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-1534735574> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                                rdfs:label "phospho-APC/C:Cdh1 complex" .
 
 
@@ -724,6 +957,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-1731249754> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-1731249754> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-1731249754> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                                rdfs:label "cell cycle proteins:phospho-APC/C:Cdh1 complex" .
 
 
@@ -752,6 +987,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-1731249081> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-1731249081> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-1731249081> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 1280 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "cell cycle proteins:phospho-APC/C:Cdh1 complex" .
 
 
@@ -794,6 +1031,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-1927762586> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-1927762586> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-1927762586> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                                rdfs:label "multiubiquitinated cell cycle protein:APC/C:Cdh1 complex" .
 
 
@@ -836,6 +1075,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-1927762585> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-1927762585> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-1927762585> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 630 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "multiubiquitinated cell cycle protein:APC/C:Cdh1 complex" .
 
 
@@ -874,6 +1115,8 @@
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7487-2124276089> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7488-2124276089> ,
                                                                                                             <http://www.reactome.org/biopax/63/48887#Protein7489-2124276089> ;
+                                                               <http://geneontology.org/lego/hint/layout/x> 330 ;
+                                                               <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                rdfs:label "multiubiquitinated Skp2:phospho-APC/C:Cdh1 complex" .
 
 
@@ -925,6 +1168,8 @@
                                                                                                           <http://www.reactome.org/biopax/63/48887#Protein217-310846275> ,
                                                                                                           <http://www.reactome.org/biopax/63/48887#Protein218-310846275> ,
                                                                                                           <http://www.reactome.org/biopax/63/48887#Protein219-310846275> ;
+                                                             <http://geneontology.org/lego/hint/layout/x> 580 ;
+                                                             <http://geneontology.org/lego/hint/layout/y> 360 ;
                                                              rdfs:label "26S proteasome" .
 
 
@@ -976,20 +1221,112 @@
                                                                                                           <http://www.reactome.org/biopax/63/48887#Protein217-310846274> ,
                                                                                                           <http://www.reactome.org/biopax/63/48887#Protein218-310846274> ,
                                                                                                           <http://www.reactome.org/biopax/63/48887#Protein219-310846274> ;
+                                                             <http://geneontology.org/lego/hint/layout/x> 280 ;
+                                                             <http://geneontology.org/lego/hint/layout/y> 360 ;
                                                              rdfs:label "26S proteasome" .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway643
 <http://www.reactome.org/biopax/63/48887#Pathway643> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0031145> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0031145> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 160 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Lorca, T, Castro, A, 2006-01-26 00:00:00" ,
+                                                                                                   "Edited: Matthews, L, 2006-01-30 00:00:00" ,
+                                                                                                   "Reviewed: Peters, JM, 2006-03-27 22:55:09" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "The Anaphase Promoting Complex or Cyclosome (APC/C) functions during mitosis to promote sister chromatid separation and mitotic exit through the degradation of mitotic cyclins and securin. This complex is also active in interphase insuring the appropriate length of the G1 phase (reviewed in Peters, 2002). The APC/C contains at least 12 subunits and functions as an ubiquitin-protein ligase (E3) promoting the multiubiquitination of its target proteins (see Gieffers et al., 2001). <br>In the ubiquitination reaction, ubiquitin is activated by the formation of a thioester bond with the (E1) ubiquitin activating enzyme then transferred to a cysteine residue within the ubiquitin conjugating enzyme (E2) and ultimately to a lysine residue within the target protein, with the aid of ubiquitin-protein ligase activity of the APC/C. The ubiquitin chains generated are believed to target proteins for destruction by the 26S proteasome (Reviewed in Peters, 1994 ) <br>The activity of the APC/C is highly periodic during the cell cycle and is controlled by a combination of regulatory events. The APC/C is activated by phosphorylation and the regulated recruitment of activating subunits and is negatively regulated by sequestration by kinetochore-associated checkpoint proteins. The Emi1 protein associates with Cdh1 and Cdc20, inhibiting the APC/C between G1/S and prophase. RSSA1 may play a similar role in ihibiting the APC during early mitosis.<br>Following phosphorylation of the APC/C core subunits by mitotic kinases, the activating subunit, Cdc20 is recruited to the APC/C and is responsible for mitotic activities, including the initiation of sister chromatid separation and the timing of exit from mitosis (See Zachariae and Nasmyth, 1999). Substrates of the Cdc20:APC/C complex, which are recognized by a motif known as the destruction box (D box) include Cyclin A, Nek2, Securin and Cyclin B. Degradation of Securin and Cyclin B does not occur until the mitotic spindle checkpoint has been satisfied (see Castro et al. 2005).<br>Cdc20 is degraded late in mitosis (Reviewed in Owens and Hoyt, 2005). At this time the activating subunit, Cdh1, previously maintained in an inactive phosphorylated state by mitotic kinases, is dephosphorylated and associates with and activates the APC/C. The APC/C:Cdh1 complex recognizes substrates containing a D box, a KEN box (Pfleger and Kirschner, 2000) or a D box activated (DAD) domain (Castro et al., 2002) sequence and promotes the ordered degration of mitotic cyclins and other mitotic proteins culminating with its own ubiquitin-conjugating enzyme (E2) subunit UbcH10 (Rape et al., 2006). This ordered degradation promotes the stability of Cyclin A at the end of G1. This stabilization, in turn, promotes the phosphorylation of Cdh1 and its abrupt dissociation from the APC/C, allowing accumulation of cyclins for the next G1/S transition (Sorensen et al., 2001). <br><br>" ;
                                                      rdfs:label "APC/C-mediated degradation of cell cycle proteins" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway643> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0031145> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref5289> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9905> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9907> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9918> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9921> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9922> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9923> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9924> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9925>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Pathway656
 <http://www.reactome.org/biopax/63/48887#Pathway656> rdf:type owl:NamedIndividual ,
-                                                              <http://purl.obolibrary.org/obo/GO_0031145> ;
+                                                              <http://purl.obolibrary.org/obo/GO_0031145> ,
+                                                              <http://www.biopax.org/release/biopax-level3.owl#Pathway> ;
                                                      <http://purl.obolibrary.org/obo/BFO_0000050> <http://www.reactome.org/biopax/63/48887#Pathway643> ;
+                                                     <http://purl.obolibrary.org/obo/BFO_0000051> <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4021> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ,
+                                                                                                  <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024> ;
+                                                     <http://geneontology.org/lego/hint/layout/x> 30 ;
+                                                     <http://geneontology.org/lego/hint/layout/y> 460 ;
+                                                     <http://purl.org/dc/elements/1.1/contributor> "Authored: Lorca, T, Castro, A, 2006-01-26 00:00:00" ,
+                                                                                                   "Edited: Matthews, L, 2006-01-30 00:00:00" ,
+                                                                                                   "Reviewed: Peters, JM, 2006-03-27 22:55:09" ,
+                                                                                                   "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                     <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                     <http://purl.org/pav/providedBy> "https://reactome.org" ;
+                                                     rdfs:comment "From late mitosis through G1 phase APC/C:Cdh1 insures the continued degradation of the mitotic proteins and during mitotic exit and G1 its substrates include Cdc20, Plk1, Aurora A, Cdc6 and Geminin (see Castro et al., 2005). Rape et al. have recently demonstrated that the order in which APC/C targeted proteins are degraded is determined by the processivity of multiubiquitination of these substrates. Processive substrates acquire a polyubiquitin chain upon binding to the APC/C once and are degraded. Distributive substrates bind, dissociate and reassociate with the APC/C multiple times before acquiring an ubiquitin chain of sufficient length to insure degradation. In addition, distributive substrates that dissociate from the APC/C with short ubiquitin chains are targeted for deubiquitination (Rape et al., 2006)." ;
                                                      rdfs:label "APC/C:Cdh1 mediated degradation of Cdc20 and other APC/C:Cdh1 targeted proteins in late mitosis/early G1" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway656> ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget <http://purl.obolibrary.org/obo/GO_0031145> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway656> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#Pathway643> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway656> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4021> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9920> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9921>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway656> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4022> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway656> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4023> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9903> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9913>
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <http://www.reactome.org/biopax/63/48887#Pathway656> ;
+   owl:annotatedProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+   owl:annotatedTarget <http://www.reactome.org/biopax/63/48887#BiochemicalReaction4024> ;
+   <http://geneontology.org/lego/evidence> <http://www.reactome.org/biopax/63/48887#PublicationXref9548> ,
+                                           <http://www.reactome.org/biopax/63/48887#PublicationXref9550>
+ ] .
 
 
 ###  http://www.reactome.org/biopax/63/48887#Protein11492-1731249081
@@ -1216,6 +1553,8 @@
                                                                                                              <http://www.reactome.org/biopax/63/48887#Protein11931-2049471298> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#Protein2773-2049471298> ,
                                                                                                              <http://www.reactome.org/biopax/63/48887#Protein7478-2049471298> ;
+                                                                <http://geneontology.org/lego/hint/layout/x> 930 ;
+                                                                <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                                 rdfs:label "(APC/C:Cdh1)-targeted cell cycle proteins" .
 
 
@@ -1235,6 +1574,8 @@
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein172823928328> ,
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein173823928328> ,
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein174823928328> ;
+                                                              <http://geneontology.org/lego/hint/layout/x> 1230 ;
+                                                              <http://geneontology.org/lego/hint/layout/y> 210 ;
                                                               rdfs:label "Ub" .
 
 
@@ -1254,6 +1595,8 @@
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein172823928329> ,
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein173823928329> ,
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein174823928329> ;
+                                                              <http://geneontology.org/lego/hint/layout/x> 680 ;
+                                                              <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                               rdfs:label "Ub" .
 
 
@@ -1273,6 +1616,8 @@
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein172823928330> ,
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein173823928330> ,
                                                                                                            <http://www.reactome.org/biopax/63/48887#Protein174823928330> ;
+                                                              <http://geneontology.org/lego/hint/layout/x> 380 ;
+                                                              <http://geneontology.org/lego/hint/layout/y> 710 ;
                                                               rdfs:label "Ub" .
 
 
@@ -3082,13 +3427,139 @@
                                                                  rdfs:label "CDC23" .
 
 
+###  http://www.reactome.org/biopax/63/48887#PublicationXref5289
+<http://www.reactome.org/biopax/63/48887#PublicationXref5289> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:11340163" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9548
+<http://www.reactome.org/biopax/63/48887#PublicationXref9548> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15014502" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9550
+<http://www.reactome.org/biopax/63/48887#PublicationXref9550> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15014503" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9903
+<http://www.reactome.org/biopax/63/48887#PublicationXref9903> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15678131" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9905
+<http://www.reactome.org/biopax/63/48887#PublicationXref9905> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:12049731" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9907
+<http://www.reactome.org/biopax/63/48887#PublicationXref9907> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:10465783" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9913
+<http://www.reactome.org/biopax/63/48887#PublicationXref9913> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:16413484" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9918
+<http://www.reactome.org/biopax/63/48887#PublicationXref9918> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15949434" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9920
+<http://www.reactome.org/biopax/63/48887#PublicationXref9920> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:10733526" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9921
+<http://www.reactome.org/biopax/63/48887#PublicationXref9921> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:12446569" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9922
+<http://www.reactome.org/biopax/63/48887#PublicationXref9922> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:7985232" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9923
+<http://www.reactome.org/biopax/63/48887#PublicationXref9923> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:11336713" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9924
+<http://www.reactome.org/biopax/63/48887#PublicationXref9924> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:11562348" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
+###  http://www.reactome.org/biopax/63/48887#PublicationXref9925
+<http://www.reactome.org/biopax/63/48887#PublicationXref9925> rdf:type owl:NamedIndividual ,
+                                                                       <http://purl.obolibrary.org/obo/ECO_0000313> ;
+                                                              <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
+                                                              <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
+                                                              <http://purl.org/dc/elements/1.1/source> "PMID:15840442" ;
+                                                              <http://purl.org/pav/providedBy> "https://reactome.org" .
+
+
 #################################################################
 #    Annotations
 #################################################################
 
-<http://model.geneontology.org/1166007480> <http://geneontology.org/lego/modelstate> "development" ;
+<http://model.geneontology.org/1736994666> <http://geneontology.org/lego/modelstate> "development" ;
                                            <http://purl.org/dc/elements/1.1/contributor> "https://reactome.org/content/detail/R-HSA-174178" ;
-                                           <http://purl.org/dc/elements/1.1/date> "2018-02-08" ;
+                                           <http://purl.org/dc/elements/1.1/date> "2018-02-13" ;
                                            <http://purl.org/dc/elements/1.1/title> "Reactome:APC/C:Cdh1 mediated degradation of Cdc20 and other APC/C:Cdh1 targeted proteins in late mitosis/early G1" .
 
 
