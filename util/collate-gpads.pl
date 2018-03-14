@@ -23,7 +23,7 @@ sub write_line_to_file {
     }
     my @colvals = split(/\t/);
     my @props = split(/\|/, $colvals[11]);
-    if (!grep {$_ eq 'model-state=production'}) {
+    if (!grep {$_ eq 'model-state=production'} @props) {
         # skip non-production models
         return;
     }
