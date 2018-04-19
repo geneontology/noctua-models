@@ -15,3 +15,5 @@ s@http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=@http://identifiers.org/rgd
 s@http://www.wormbase.org/db/gene/gene?name=@http://identifiers.org/wormbase/@g;
 s@http://flybase.org/reports/@http://identifiers.org/flybase/@g;
 s@http://dictybase.org/gene/@http://identifiers.org/dictybase.gene/@g;
+# TODO
+s@http://identifiers.org/TAIR:locus:@http://identifiers.org/tair.locus/@g;
