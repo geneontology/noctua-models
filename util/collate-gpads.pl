@@ -36,7 +36,7 @@ sub write_line_to_file {
     if (!$fhmap{$base}) {
         my $fh = FileHandle::new();
         $fh->open(">legacy/$base.gpad") || die $base;
-        print $fh "!gpa-version: 1.2\n";
+        print $fh "!gpa-version: 1.1\n";
         print $fh "!collation date: $today\n";
         print $fh "!collated from production models in https://github.com/geneontology/noctua-models/ where col1 matches $base\n";
 
