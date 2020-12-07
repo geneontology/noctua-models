@@ -65,6 +65,7 @@ Provenance can be at the level of axiom, individual or ontology. The APs are dc:
 ## Availability
 
 Currently stored here:
+
 https://github.com/geneontology/noctua-models
 
 Any existing set of GO associations can be converted, albeit in a 'degenerate' disconnected form. This can still be useful for the purposes of uniform tooling and programmatic access:
