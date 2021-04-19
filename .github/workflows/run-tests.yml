@@ -1,0 +1,35 @@
+name: run-owltools-test
+on: 
+  push: 
+   branches: [master, dev]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    types: trigger-run-tests
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: actions/setup-java@v2
+
+      - name: Install dependencies
+        run: | 
+	  sudo apt-get update
+	  sudo apt-get install -y wget
+	  mkdir -p bin
+	  export PATH=$PATH:$PWD/bin
+          wget https://github.com/owlcollab/owltools/releases/download/2020-04-06/owltools -O bin/owltools
+	  wget https://github.com/owlcollab/owltools/releases/download/2020-04-06/owltools-oort-all.jar  -O bin/owltools-runner-all.jar
+	  chmod +x bin/*
+
+      - name: Wait
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '45s'
+
+      - name: Run tests
+        run: |
+	  make travis-test
