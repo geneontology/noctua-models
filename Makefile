@@ -24,7 +24,7 @@ clean:
 # instead we therefore perform a bare-bones OWL syntax check using the OWLAPI on each model.
 # we use the fake-catalog which rewires go-lego.owl to an empty file. 
 travis-test:
-	owltools --catalog-xml fake-catalog.xml models/*.ttl
+	owltools --catalog-xml fake-catalog.xml models/*.ttl > /dev/null
 
 # ----------------------------------------
 # EXPORT TO GPAD
