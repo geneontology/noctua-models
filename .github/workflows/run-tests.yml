@@ -12,9 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: actions/setup-java@v2
 
       - name: Run tests
         run: |
+          mkdir -p bin
+          export PATH=$PATH:$PWD/bin
+          wget http://build.berkeleybop.org/userContent/owltools/owltools -O bin/owltools
+          wget http://build.berkeleybop.org/userContent/owltools/owltools-runner-all.jar -O bin/owltools-runner-all.jar
+          chmod +x bin/*
 	  make travis-test
