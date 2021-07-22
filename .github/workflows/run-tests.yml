@@ -1,0 +1,17 @@
+name: run-owltools-test
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          mkdir -p bin
+          export PATH=$PATH:$PWD/bin
+          wget https://github.com/owlcollab/owltools/releases/download/2020-04-06/owltools -O bin/owltools
+          wget https://github.com/owlcollab/owltools/releases/download/2020-04-06/owltools-oort-all.jar -O bin/owltools-runner-all.jar
+          chmod +x bin/*
+          make travis-test
