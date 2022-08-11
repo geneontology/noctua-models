@@ -32,7 +32,7 @@ sub write_line_to_file {
         return;
     }
     $base = lc($base);
-    print STDERR "Writing: $base\n";
+    #print STDERR "Writing: $base\n";
     if (!$fhmap{$base}) {
         my $fh = FileHandle::new();
         $fh->open(">legacy/$base.gpad") || die $base;
@@ -44,5 +44,5 @@ sub write_line_to_file {
     }
     my $fh = $fhmap{$base};
     print $fh "$line\n";
-        
+
 }
