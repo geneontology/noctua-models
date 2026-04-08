@@ -1,0 +1,82 @@
+name: Check modified models
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  check-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get modified model files
+        id: changed
+        run: |
+          files=$(git diff --name-only --diff-filter=ACMR HEAD~1 HEAD -- 'models/*.ttl' | tr '\n' ' ')
+          echo "files=$files" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Java
+        if: steps.changed.outputs.files != ''
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install Jena
+        if: steps.changed.outputs.files != ''
+        run: |
+          wget -q https://archive.apache.org/dist/jena/binaries/apache-jena-6.0.0.tar.gz
+          tar xzf apache-jena-6.0.0.tar.gz
+          echo "$PWD/apache-jena-6.0.0/bin" >> "$GITHUB_PATH"
+
+      - name: Run SPARQL checks
+        if: steps.changed.outputs.files != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for model in ${{ steps.changed.outputs.files }}; do
+            for query in sparql/*.rq; do
+              query_name=$(basename "$query")
+
+              # Use CSV output for reliable empty-check and Markdown table conversion
+              csv_output=$(arq --data="$model" --query="$query" --results=csv 2>/dev/null)
+              line_count=$(echo "$csv_output" | wc -l)
+
+              if [ "$line_count" -gt 1 ]; then
+                # Convert CSV to Markdown table
+                md_table=$(echo "$csv_output" | awk -F',' '
+                  NR==1 {
+                    printf "| "
+                    for (i=1; i<=NF; i++) printf "%s | ", $i
+                    printf "\n| "
+                    for (i=1; i<=NF; i++) printf "--- | "
+                    printf "\n"
+                  }
+                  NR>1 {
+                    printf "| "
+                    for (i=1; i<=NF; i++) printf "%s | ", $i
+                    printf "\n"
+                  }
+                ')
+
+                title="Model check failed: ${query_name} on $(basename "$model")"
+                body=$(cat <<EOF
+          **Query:** \`${query_name}\`
+          **Model:** \`${model}\`
+          **Commit:** ${{ github.sha }}
+
+          **Results:**
+
+          ${md_table}
+          EOF
+                )
+                gh issue create \
+                  --title "$title" \
+                  --body "$body" \
+                  --assignee balhoff,kltm
+              fi
+            done
+          done

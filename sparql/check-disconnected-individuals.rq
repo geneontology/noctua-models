@@ -1,0 +1,40 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX pav: <http://purl.org/pav/>
+
+SELECT DISTINCT ?contributor ?group ?individual ?type
+WHERE {
+    ?individual a owl:NamedIndividual .
+    MINUS {
+        ?subj ?rel1 ?individual .
+        { ?subj a owl:NamedIndividual . } UNION { ?subj a owl:Axiom . }
+    }
+    MINUS {
+        [
+            owl:annotatedSource ?subjA ;
+            owl:annotatedProperty ?rel1A ;
+            owl:annotatedTarget ?individual
+        ] .
+        { ?subjA a owl:NamedIndividual . } UNION { ?subjA a owl:Axiom . }
+    }
+    MINUS {
+        ?individual ?rel2 ?obj .
+        ?obj a owl:NamedIndividual .
+    }
+    MINUS {
+        [
+            owl:annotatedSource ?individual ;
+            owl:annotatedProperty ?rel2A ;
+            owl:annotatedTarget ?objA
+        ] .
+        ?objA a owl:NamedIndividual ;
+    }
+    ?model a owl:Ontology ;
+      dc:contributor ?contributor ;
+      pav:providedBy ?group .
+    OPTIONAL {
+        ?individual a ?type .
+        FILTER(?type != owl:NamedIndividual)
+    }
+}

@@ -1,0 +1,20 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX pav: <http://purl.org/pav/>
+
+SELECT DISTINCT ?contributor ?provider ?source ?property ?target
+WHERE {
+    ?axiom1 rdf:type owl:Axiom ;
+            owl:annotatedSource ?source ;
+            owl:annotatedProperty ?property ;
+            owl:annotatedTarget ?target .
+    ?axiom2 rdf:type owl:Axiom ;
+            owl:annotatedSource ?source ;
+            owl:annotatedProperty ?property ;
+            owl:annotatedTarget ?target .
+    FILTER(?axiom1 != ?axiom2)
+    ?model a owl:Ontology ;
+        dc:contributor ?contributor ;
+        pav:providedBy ?provider .
+}
