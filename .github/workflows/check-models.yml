@@ -41,13 +41,27 @@ jobs:
             for query in sparql/*.rq; do
               query_name=$(basename "$query")
 
-              # Use CSV output for reliable empty-check and Markdown table conversion
-              csv_output=$(arq --data="$model" --query="$query" --results=csv 2>/dev/null)
-              line_count=$(echo "$csv_output" | wc -l)
+              # Run query on current version, stripping \r from CSV output
+              csv_current=$(arq --data="$model" --query="$query" --results=csv 2>/dev/null | tr -d '\r')
+              header=$(echo "$csv_current" | head -1)
+              current_rows=$(echo "$csv_current" | tail -n +2 | grep -v '^$')
 
-              if [ "$line_count" -gt 1 ]; then
-                # Convert CSV to Markdown table
-                md_table=$(echo "$csv_output" | awk -F',' '
+              # Run query on previous version of model
+              prev_ttl=$(mktemp --suffix=.ttl)
+              if git show HEAD~1:"$model" > "$prev_ttl" 2>/dev/null; then
+                prev_rows=$(arq --data="$prev_ttl" --query="$query" --results=csv 2>/dev/null | tr -d '\r' | tail -n +2 | grep -v '^$')
+              else
+                prev_rows=""
+              fi
+              rm -f "$prev_ttl"
+
+              # Find rows present in current but not in previous
+              new_rows=$(comm -23 \
+                <(echo "$current_rows" | grep -v '^$' | sort) \
+                <(echo "$prev_rows" | grep -v '^$' | sort))
+
+              if [ -n "$new_rows" ]; then
+                md_table=$(printf '%s\n%s' "$header" "$new_rows" | awk -F',' '
                   NR==1 {
                     printf "| "
                     for (i=1; i<=NF; i++) printf "%s | ", $i
@@ -68,7 +82,7 @@ jobs:
           **Model:** \`${model}\`
           **Commit:** ${{ github.sha }}
 
-          **Results:**
+          **New results:**
 
           ${md_table}
           EOF
