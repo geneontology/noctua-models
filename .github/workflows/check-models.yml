@@ -44,12 +44,12 @@ jobs:
               # Run query on current version, stripping \r from CSV output
               csv_current=$(arq --data="$model" --query="$query" --results=csv 2>/dev/null | tr -d '\r')
               header=$(echo "$csv_current" | head -1)
-              current_rows=$(echo "$csv_current" | tail -n +2 | grep -v '^$')
+              current_rows=$(echo "$csv_current" | tail -n +2 | grep -v '^$' || true)
 
               # Run query on previous version of model
               prev_ttl=$(mktemp --suffix=.ttl)
               if git show HEAD~1:"$model" > "$prev_ttl" 2>/dev/null; then
-                prev_rows=$(arq --data="$prev_ttl" --query="$query" --results=csv 2>/dev/null | tr -d '\r' | tail -n +2 | grep -v '^$')
+                prev_rows=$(arq --data="$prev_ttl" --query="$query" --results=csv 2>/dev/null | tr -d '\r' | tail -n +2 | grep -v '^$' || true)
               else
                 prev_rows=""
               fi
