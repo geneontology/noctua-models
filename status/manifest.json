@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T11:33:35.886Z",
+  "master_sha": "9b9a1213bb939b37f04da70a79069fdb0ab46110",
+  "model_count": 54440,
+  "checks": [
+    {
+      "id": "disconnected_individuals",
+      "kind": "sparql",
+      "name": "Disconnected Individuals",
+      "description": "Named individuals with no incoming or outgoing relations to other individuals (or via OWL axiom annotations).",
+      "severity": "warning",
+      "source_path": "sparql/status/disconnected_individuals.rq",
+      "columns": [
+        "individual",
+        "type"
+      ]
+    },
+    {
+      "id": "gpad_compatibility",
+      "kind": "gpad_compatibility",
+      "name": "GPAD Compatibility",
+      "description": "Categorical: does this model fit GPAD's flat triple shape? 'Causal model' is not a defect — modern GO-CAMs intentionally encode causal flow that GPAD cannot represent. Backed by ShEx validation against gpad-shapes.shex.",
+      "severity": "info",
+      "pass_label": "GPAD-compatible",
+      "fail_label": "Causal model",
+      "unknown_label": "Unknown shape"
+    },
+    {
+      "id": "multiply_reified_edges",
+      "kind": "sparql",
+      "name": "Multiply Reified Edges",
+      "description": "More than one OWL axiom annotation reifies the same (subject, property, object) triple.",
+      "severity": "warning",
+      "source_path": "sparql/status/multiply_reified_edges.rq",
+      "columns": [
+        "source",
+        "property",
+        "target"
+      ]
+    },
+    {
+      "id": "owl_consistency",
+      "kind": "owl_consistency",
+      "name": "OWL Consistency",
+      "description": "Arachne reasoning over the model imported alongside go-lego. Inconsistency surfaces as individuals typed owl:Nothing.",
+      "severity": "error"
+    }
+  ]
+}
